@@ -124,7 +124,6 @@ void draw() {
                 NumOfgear = 8;
                 for (int i = 0; i < NumOfgear; i++) {
                     gear.add(new Enemy(enemy.x,enemy.y,1000,1000,false));
-                    gear.get(i).enemy_move();
                 }
                 gear_push = false;
             }
@@ -487,9 +486,11 @@ class Enemy{
     float HP;
     float Max_HP;
     boolean is_boss;
-    Enemy(float x, float y,float HP,float Max_HP, boolean is_boss) {
+    Enemy(float x, float y, float xsize, float ysize,float HP,float Max_HP, boolean is_boss) {
         this.x = x;
         this.y = y;
+        this.xsize = xsize;
+        this.ysize = ysize;
         this.HP = HP;
         this.Max_HP = Max_HP;
         this.is_boss = is_boss;
@@ -511,7 +512,16 @@ class Enemy{
             xmove = random(512);
             ymove = random(200);
         }
-        else if(phase == 4)
+        else if(phase == 4 && frameCount % 300 == 0){
+            if(is_boss == false){
+                xmove = random(512);
+                ymove = random(height);
+            }
+            if(is_boss == true && frameCount % 600 == 0){
+                xmove = random(512);
+                ymove = random(400);
+            }
+        }
         if (!(x > xmove - 10 && x < xmove + 10)) {
             if (x < xmove) {
                 x += 5;
@@ -535,6 +545,9 @@ class Enemy{
             strokeWeight(3);
             line(0, 3, HP * (Game_width / Max_HP), 3);
         }
+    }
+    void reject_player(){
+        if(player.x < x + 25 && player.x > x - 25)
     }
     void gear() {
         noStroke();
@@ -585,6 +598,7 @@ void status() {
 //勝敗の判定
 void judge() {
     textSize(60);
+    fill(0,0,400);
     if (enemy.HP <= 0) {
         text("YOU WIN!!",Game_width / 2, height / 2 - 50);
         game_play = false;
