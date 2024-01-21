@@ -190,10 +190,6 @@ void keyPressed() {
     if (key == 'x' || key == 'X') {
         x_push = true;
     }
-    if(key == 's' || key == 'S'){
-        save("drawing_3" + picture + ".png");
-        picture++;
-    }
 }
 
 // キーを離したとき
@@ -544,7 +540,8 @@ class Enemy{
     float HP;
     float Max_HP;
     boolean is_boss;
-    Enemy(float x, float y, float xsize, float ysize,float HP,float Max_HP, boolean is_boss) {
+    Enemy(float x, float y, float xsize, float ysize,
+    float HP,float Max_HP, boolean is_boss) {
         this.x = x;
         this.y = y;
         this.xsize = xsize;
