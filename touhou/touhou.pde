@@ -779,6 +779,6 @@ void judge_phase() {
         }
         else if (enemy.HP <= enemy.Max_HP * 3 / 13) {
             phase = 4;
-        } `
+        }
     }
 }
