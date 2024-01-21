@@ -1,11 +1,12 @@
 //グローバル変数
 int NumOfBullet = 0 , NumOfRect = 0 , NumOfCParts = 0 , NumOfBullet2 = 0 , NumOfbomb = 0 ,
-NumOfsinb = 0,NumOfcosb = 0 , NumOfgear = 0;
+NumOfsinb = 0,NumOfcosb = 0 , NumOfgear = 0 , NumOfgearb = 0;
 //NumOfBullet:弾の数 NumOfRect : 敵の攻撃弾の数。//NumOfCparts : 敵の円状攻撃弾の数。
+int picture = 0;
 float A = 50,fire = 10,T = 360, biase = 0;//sin関数における値。A:振幅,fire:一周期においての弾の発射数,T:周期,biase:バイアス
 int usebullet = 0; //着目する弾
 int frameCount = 0; //フレーム数値
-int x_count = 0; //xが押されている間のフレーム数
+int x_count = 0 , enemy_count = 0; //xが押されている間のフレーム数,敵に触れているフレーム時間
 int Game_width = 512;
 int phase = 0; //フェーズ管理
 boolean z_push = false , x_push = false; //Z判定
@@ -25,6 +26,7 @@ ArrayList<Weapon> Rect_attack; //敵弾の動的配列を定義
 ArrayList<Weapon> Cparts; //敵弾の動的配列を定義
 ArrayList<Weapon> sinb; //Sin状に敵弾を並べる。
 ArrayList<Weapon> cosb; //Cos状に敵弾を並べる。
+ArrayList<Weapon> gear_bullet;//ギアが発射する弾丸
 //--------------------------------
 PImage shiratuyu;
 PImage shiratuyu_head;
@@ -42,10 +44,10 @@ void setup() {
     shiratuyu_head = loadImage("shiratuyu.head.png");
     murasame_head = loadImage("murasame_head.png");
     //クラス定義
-    player = new Player(Game_width / 2,height / 3,false,false,false,false,5,200,200,1000,1000); //playerの初期化。
+    player = new Player(Game_width / 2,height / 3,false,false,false,false,5,350,350,70,70); //playerの初期化。
     //Player(x初期値,y初期値,上キー,下キー,右キー,左キー,プレイヤースピード,HP,Max_HP,XP,Max_XP)
-    enemy = new Enemy(Game_width / 2,height / 4,16000,16000,true);
-    //Enemy(x初期値,y初期値,HP,Max_HP,ボスかどうか)
+    enemy = new Enemy(Game_width / 2,height / 4,50,50,16000,16000,true);
+    //Enemy(x初期値,y初期値,xサイズ,yサイズHP,Max_HP,ボスかどうか)
     gear = new ArrayList<Enemy>();
     bullets = new ArrayList<Weapon>(); //味方の弾を定義
     bullet2 = new ArrayList<Weapon>(); //味方の弾(二個目)を定義
@@ -54,6 +56,7 @@ void setup() {
     Cparts = new ArrayList<Weapon>(); //敵の弾を定義
     sinb = new ArrayList<Weapon>(); //Sin弾を定義。
     cosb = new ArrayList<Weapon>(); //cos弾を定義。
+    gear_bullet = new ArrayList<Weapon>(); //ギアの発射弾を定義。
 }
 //繰り返し処理。
 void draw() {
@@ -113,7 +116,7 @@ void draw() {
                         NumOfsinb++;
                     }
                     if (T * i + (T / fire) * j < Game_width) {
-                        cosb.add(new Weapon(T * i + (T / fire) * j , height - A * cos(radians(36 * j)),0.02,5,0,90, - 90));
+                        cosb.add(new Weapon(T * i + (T / fire) * j , height - A * cos(radians(36 * j)),0.02,5,0,90, -90));
                         NumOfcosb++;
                     }
                 }
@@ -123,12 +126,24 @@ void draw() {
             if (gear_push) {
                 NumOfgear = 8;
                 for (int i = 0; i < NumOfgear; i++) {
-                    gear.add(new Enemy(enemy.x,enemy.y,1000,1000,false));
+                    gear.add(new Enemy(enemy.x,enemy.y,50,50,5000,5000,false));
                 }
                 gear_push = false;
             }
+            if (frameCount % 10 == 0) {
+                float dx,dy;
+                for (int i = 0; i < NumOfgear - 1; i++) {
+                    dx = player.x - gear.get(i).x;
+                    dy = player.y - gear.get(i).y;
+                    gear_bullet.add(new Weapon(gear.get(i).x,gear.get(i).y,10,5,0,degrees(atan2(dy,dx)),degrees(atan2(dy,dx))));
+                    NumOfgearb++;
+                }
+                dx = player.x - enemy.x;
+                dy = player.y - enemy.y;
+                gear_bullet.add(new Weapon(enemy.x,enemy.y,15,5,0,degrees(atan2(dy,dx)),degrees(atan2(dy,dx))));
+                NumOfgearb++;
+            }
         }
-
         //Weapon(初期x座標,初期y座標,弾速,攻撃力,消費XP,x進行方向,y進行方向)
         control_bullet();
         control_rect();
@@ -162,9 +177,6 @@ void keyPressed() {
         if (keyCode == SHIFT) {
             player.speed = 2;
         }
-        if (keyCode == ENTER) {
-            Enter_pushed = true;
-        }
     }
     if (key == 'z' || key == 'Z') {
         z_push = true;
@@ -177,6 +189,10 @@ void keyPressed() {
     }
     if (key == 'x' || key == 'X') {
         x_push = true;
+    }
+    if(key == 's' || key == 'S'){
+        save("drawing_3" + picture + ".png");
+        picture++;
     }
 }
 
@@ -224,7 +240,8 @@ class Player{
     boolean is_down;
     boolean is_right;
     boolean is_left;
-    //プレイヤーの移動スピード
+    //---------------
+    boolean movable = true;
     float speed; //プレイヤーの移動スピードを定義。
     float HP;
     float Max_HP;
@@ -247,21 +264,41 @@ class Player{
     // Playerクラス内で使用する関数
     void display() {
         noStroke();
-        image(shiratuyu,player.x - 50,player.y - 55);
+        image(shiratuyu,x - 50,y - 55);
     }
     // プレイヤーを動かす。
     void movement() {
-        if (y >= 0 && is_up) {
+        if (y > 0 && is_up) {
             y -= speed;
+            //-----敵に当たった時-----//
+            if (dist(x,y,enemy.x,enemy.y) < 40) {
+                y += speed;
+                player.HP -= 1;
+            }
         }
         if (y <= height && is_down) {
             y += speed;
+            //----敵に当たった時-----//
+            if (dist(x,y,enemy.x,enemy.y) < 40) {
+                y -= speed;
+                player.HP -= 1;
+            }
         }
         if (x <= Game_width && is_right) {
             x += speed;
+            //-----敵に当たった時-----//
+            if (dist(x,y,enemy.x,enemy.y) < 40) {
+                x -= speed;
+                player.HP -= 1;
+            }
         }
         if (x >= 0 && is_left) {
             x -= speed;
+            //-----敵に当たった時-----//
+            if (dist(x,y,enemy.x,enemy.y) < 40) {
+                x += speed;
+                player.HP -= 1;
+            }
         }
     }
 }
@@ -370,7 +407,7 @@ void control_bomb() {
             }
             //ボムと四角形の間の距離を計算し処理
             if (phase == 1 && NumOfRect > 0) {
-                for (int j = 0;  j < NumOfRect; j++) {
+                for (int j = 0; j < NumOfRect; j++) {
                     distance = dist(bomb.get(i).x,bomb.get(i).y,Rect_attack.get(j).x,Rect_attack.get(j).y); //ボムと四角形の間の距離。
                     if (distance < bomb.get(i).r + 25) {
                         Rect_attack.remove(j);
@@ -407,6 +444,25 @@ void control_bomb() {
                     }
                 }
             }
+            else if (phase == 4) {
+                if (NumOfgearb > 0) {
+                    for (int j = 0; j < NumOfgearb; j++) {
+                        distance = dist(bomb.get(i).x,bomb.get(i).y,gear_bullet.get(j).x,gear_bullet.get(j).y);
+                        if (distance < bomb.get(i).r) {
+                            gear_bullet.remove(j);
+                            NumOfgearb--;
+                        }
+                    }
+                }
+                if (NumOfgear > 0) {
+                    for (int j = 0; j < NumOfgear; j++) {
+                        distance = dist(bomb.get(i).x,bomb.get(i).y,gear.get(j).x,gear.get(j).y);
+                        if (distance < bomb.get(i).r) {
+                            gear.get(j).HP -= bomb.get(i).atk;
+                        }
+                    }
+                }
+            }
         }
     }
 }
@@ -416,7 +472,7 @@ void control_rect() {
     for (int i = 0; i < NumOfRect - 1; i++) {
         Rect_attack.get(i).rect_fall(); //四角形を落とす。
         if (NumOfRect > 1) {
-            if (Rect_attack.get(i).y > height || Rect_attack.get(i).x > Game_width) {
+            if (Rect_attack.get(i).y> height || Rect_attack.get(i).x > Game_width) {
                 Rect_attack.remove(i);
                 NumOfRect--;
             }
@@ -481,6 +537,8 @@ class Enemy{
     //フィールドの宣言
     float x;
     float y;
+    float xsize;
+    float ysize;
     float xmove = Game_width / 2;
     float ymove = height / 4;
     float HP;
@@ -512,12 +570,12 @@ class Enemy{
             xmove = random(512);
             ymove = random(200);
         }
-        else if(phase == 4 && frameCount % 300 == 0){
-            if(is_boss == false){
+        else if (phase == 4 && frameCount % 300 == 0) {
+            if (is_boss == false) {
                 xmove = random(512);
                 ymove = random(height);
             }
-            if(is_boss == true && frameCount % 600 == 0){
+            if (is_boss == true && frameCount % 600 == 0) {
                 xmove = random(512);
                 ymove = random(400);
             }
@@ -546,9 +604,6 @@ class Enemy{
             line(0, 3, HP * (Game_width / Max_HP), 3);
         }
     }
-    void reject_player(){
-        if(player.x < x + 25 && player.x > x - 25)
-    }
     void gear() {
         noStroke();
         fill(400,400,400);
@@ -557,26 +612,55 @@ class Enemy{
             pushMatrix();
             fill(0);
             translate(x,y);
-            rotate(radians(frameCount));
+            rotate(radians(5 * frameCount));
             rect(0,0,10,10);
             translate(30 * cos(radians((360 * i / 8))),30 * sin(radians(360 * i / 8)));
             rotate(radians(360 * i / 8));
             noStroke();
             fill(400,400,400);
-            rect(-1,-1,10,10);
+            rect( -1, -1,10,10);
             popMatrix();
+        }
+        
+    }
+}
+//ギア（歯車）の制御。
+void control_gear() {
+    for (int i = 0; i < NumOfgear - 1; i++) {
+        gear.get(i).gear();
+        gear.get(i).enemy_move();
+        for (int j = 0; j < NumOfBullet - 1; j++) {
+            if (dist(bullets.get(j).x,bullets.get(j).y,gear.get(i).x,gear.get(i).y) < 30) {
+                gear.get(i).HP -= bullets.get(j).atk;
+                bullets.remove(j);
+                NumOfBullet--;
+            }
+        }
+        for (int j = 0; j < NumOfBullet2 - 1; j++) {
+            if (dist(bullet2.get(j).x,bullet2.get(j).y,gear.get(i).x,gear.get(i).y) < 30) {
+                gear.get(i).HP -= bullet2.get(j).atk;
+                bullet2.remove(j);
+                NumOfBullet2--;
+            }
+        }
+        if (gear.get(i).HP < 0) {
+            gear.remove(i);
+            NumOfgear--;
+        }
+    }
+    for (int i = 0; i < NumOfgearb - 1; i++) {
+        gear_bullet.get(i).cbullet();
+        if ((gear_bullet.get(i).x < player.x + 25 && gear_bullet.get(i).x > player.x - 25) && (gear_bullet.get(i).y <player.y + 25 && gear_bullet.get(i).y > player.y - 25)) {
+            player.HP -= gear_bullet.get(i).atk;
+            gear_bullet.remove(i);
+            NumOfgearb--;
+        }
+        if (gear_bullet.get(i).y > height || gear_bullet.get(i).y < 0 || gear_bullet.get(i).x > Game_width) {
+            gear_bullet.remove(i);
+            NumOfgearb--;
         }
     }
 }
-
-void control_gear(){
-    for(int i = 0; i < NumOfgear - 1; i++){
-        gear.get(i).gear();
-        gear.get(i).enemy_move();
-    }
-}
-
-//ギアを管理
 //ゲーム状況を表示
 void status() {
     strokeWeight(3);
@@ -588,7 +672,7 @@ void status() {
     text("Enemy",Game_width + 60,height / 4);
     image(shiratuyu_head, width - 120, height * 3 / 4 - 40 ,40,40);
     textSize(40);
-    text("HP:" + player.HP + "/" + player.Max_HP, Game_width + 30 , height * 3 / 4 + 60);
+    text("HP:" + player.HP + " / " + player.Max_HP, Game_width + 30 , height * 3 / 4 + 60);
     text("XP:" + player.XP + "/" + player.Max_XP, Game_width + 30 , height * 3 / 4 + 100);
     textSize(30);
     text("HP:" + enemy.HP + "/" + enemy.Max_HP , Game_width + 30, height / 4 + 60);
@@ -616,12 +700,14 @@ void continue_judge() {
         text("E:Exit",width / 2 - 65, height / 2 + 30);
         if (keyPressed) {
             if (ckey) {
+                //初期化して再開
                 game_play = true;
                 player.x = Game_width / 2;
                 player.y = height - 100;
                 enemy.x = Game_width / 2;
                 enemy.y = height / 4;
                 player.HP = player.Max_HP;
+                player.XP = player.Max_XP;
                 enemy.HP = enemy.Max_HP;
                 if (NumOfBullet > 0) {
                     for (int i = NumOfBullet - 1; i >= 0; i--) {
@@ -653,12 +739,26 @@ void continue_judge() {
                         cosb.remove(i);
                     }
                 }
+                if(NumOfgear > 0){
+                    for(int i = NumOfgear - 1; i >= 0; i--){
+                        gear.remove(i);
+                    }
+                }
+                if(NumOfgearb > 0){
+                    for(int i = NumOfgearb - 1; i >= 0; i--){
+                        gear_bullet.remove(i);
+                    }
+                }
                 NumOfBullet = 0;
                 NumOfBullet2 = 0;
                 NumOfRect = 0;
                 NumOfCParts = 0;
                 NumOfsinb = 0;
                 NumOfcosb = 0;
+                NumOfbomb = 0;
+                NumOfgear = 0;
+                NumOfgearb = 0;
+                gear_push = true;
                 usebullet = 0;
                 frameCount = 0;
                 phase = 1;
@@ -671,17 +771,17 @@ void continue_judge() {
 }
 void judge_phase() {
     if (phase != 0) {
-        if (enemy.HP > enemy.Max_HP * 3 / 4) {
+        if (enemy.HP > enemy.Max_HP * 11 / 13) {
             phase = 1;
         }
-        else if (enemy.HP > enemy.Max_HP * 2 / 4) {
+        else if (enemy.HP > enemy.Max_HP * 7 / 13) {
             phase = 2;
         }
-        else if (enemy.HP > enemy.Max_HP * 1 / 4) {
+        else if (enemy.HP > enemy.Max_HP * 3 / 13) {
             phase = 3;
         }
-        else if (enemy.HP <= enemy.Max_HP * 1 / 4){
+        else if (enemy.HP <= enemy.Max_HP * 3 / 13) {
             phase = 4;
-        }`
+        } `
     }
 }
