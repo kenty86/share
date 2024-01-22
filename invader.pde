@@ -76,7 +76,7 @@ void init_data() {
   score = 0;
   position = width/2;
   for(int i=0; i<MAX; i++){
-    Invaders[i] = new Invader(60 + 60*(i%8), 200 + 60*(i/8%4));
+    Invaders[i] = new Invader(60*(i%8), 60*(i/8%4));
   }
   for(int i=0; i<4; i++){
     Forts[i] = new Fort();
