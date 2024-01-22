@@ -9,6 +9,7 @@ int MAX = 32;
 int xmin, xmax, ymin, ymax;
 Invader[] Invaders = new Invader[MAX];
 Fort[] Forts = new Fort[4];
+Player player = new Player();
 
 
 class Invader {
@@ -22,19 +23,50 @@ class Invader {
     this.ypos = y;
     this.Var = (int)random(3);
   }
+
+  void draw_invaders(int x, int y){
+    if(this.is_alive == true){
+      if(this.Var == 0){
+        image(img1, this.xpos + x, this.ypos + y);
+      }
+      else if(this.Var == 1){
+        image(img2, this.xpos + x, this.ypos + y);
+      }
+      else if(this.Var == 2){
+        image(img3, this.xpos + x, this.ypos + y);
+      }
+    }
+  }
 }
 
 class Fort {
   boolean is_broken;
+  int HP;
 
   Fort(){
     this.is_broken = false;
+    HP = 3;
+  }
+
+  void draw_forts(int i){
+    tint(255,255*this.HP/3);
+    image(img4, 90 + 140*i, 600);
   }
 }
+
 
 class Player {
   boolean is_alive;
   int remaining;
+
+  Player(){
+    is_alive = true;
+    remaining = 3;
+  }
+
+  void draw_player(){
+    image(img5, position, 670);
+  }
   
 }
 
@@ -51,8 +83,8 @@ void setup() {
   img5 = loadImage("player.png");
   is_menu_showed = true;
   is_game_played = false;
+  imageMode(CENTER);
   init_data();
-
 }
 
 void draw() {
@@ -91,35 +123,15 @@ void show_data(){
 
 void play_game() {
   show_data();
-  draw_invaders(0,0);
-  draw_forts();
-  draw_player();
-}
 
-void draw_invaders(int x, int y){
-  for(int i=0; i<MAX; i++){
-    if(Invaders[i].is_alive == true){
-      if(Invaders[i].Var == 0){
-        image(img1, Invaders[i].xpos + x, Invaders[i].ypos + y);
-      }
-      else if(Invaders[i].Var == 1){
-        image(img2, Invaders[i].xpos + x, Invaders[i].ypos + y);
-      }
-      else if(Invaders[i].Var == 2){
-        image(img3, Invaders[i].xpos + x, Invaders[i].ypos + y);
-      }
-    }
-  }
-}
-
-void draw_forts(){
   for(int i=0; i<4; i++){
-    image(img4, 70 + 140*i, 600);
+    Forts[i].draw_forts(i);
   }
-}
 
-void draw_player(){
-  image(img5, position, 670);
+  for(int i=0; i<MAX; i++){
+    Invaders[i].draw_invaders(50,120);
+  }
+  player.draw_player();
 }
 
 void keyPressed() {
