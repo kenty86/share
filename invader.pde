@@ -53,6 +53,9 @@ class mob { // モブクラス
 			}
 		}
 
+		if(this.is_alive == true){
+			if(this.ypos > player.ypos) is_game_over = true;
+		}
 	}
 
 	void update_pos(){
@@ -91,22 +94,19 @@ class enemy_laser{
 	}
 
 	void collision_detect(){
-	  for(int i=0; i<MAX; i++){
-	    if(abs(mobs[i].xpos - this.xpos) <= 20 && this.ypos - mobs[i].ypos == 0) {
-			if(mobs[i].is_alive == true && this.is_invisible == false){
-				this.is_invisible = true;
-				mobs[i].is_alive = false;
-				score += (mobs[i].Var + 1) * 10;
-				break;
+		for(int i=0; i<4; i++){
+			if(abs(Forts[i].xpos - this.xpos) <= 40 && Forts[i].ypos - this.ypos == 10) {
+				if(Forts[i].is_broken == false && this.is_invisible == false){
+					this.is_invisible = true;
+					Forts[i].HP -= 1;
+					break;
+				}
 			}
 		}
-	  }
-	  for(int i=0; i<4; i++){
-		if(abs(Forts[i].xpos - this.xpos) <= 40 && this.ypos - Forts[i].ypos - 10 == 0){
-			this.is_invisible = true;
+		if(abs(this.xpos - player.xpos) <= 40 && player.ypos - this.ypos == 10){
+				is_game_over = true;
+			}
 		}
-	  }
-	}
 
 
 }
@@ -124,8 +124,17 @@ class Fort {
 	}
 
 	void draw_forts(int i){
-		tint(255,255*this.HP/3);
-		image(img4, this.xpos, this.ypos);
+		if(this.is_broken == false){
+			image(img4, this.xpos, this.ypos);
+			textSize(20);
+			fill(0xff);
+			text(this.HP,this.xpos,this.ypos);
+		}
+		
+	}
+
+	void check_HP(){
+		if(this.HP <= 0) this.is_broken = true;
 	}
 }
 
@@ -133,14 +142,19 @@ class Fort {
 class Player {
 	boolean is_alive;
 	int remaining;
+	int xpos, ypos;
 
 	Player(){
 		is_alive = true;
 		remaining = 3;
+		xpos = width/2;
+		ypos = 670;
 	}
-
+	void check_mouse(){
+		this.xpos = mouseX;
+	}
 	void draw_player(){
-		image(img5, mouseX, 670);
+		image(img5, this.xpos, this.ypos);
 	}
 }
 
@@ -165,21 +179,23 @@ class friend_laser {
 	}
 
 	void collision_detect(){
-	  for(int i=0; i<MAX; i++){
-	    if(abs(mobs[i].xpos - this.xpos) <= 20 && this.ypos - mobs[i].ypos == 0) {
-			if(mobs[i].is_alive == true && this.is_invisible == false){
-				this.is_invisible = true;
-				mobs[i].is_alive = false;
-				score += (mobs[i].Var + 1) * 10;
-				break;
+	  	for(int i=0; i<MAX; i++){
+	    	if(abs(mobs[i].xpos - this.xpos) <= 20 && this.ypos - mobs[i].ypos == 0) {
+				if(mobs[i].is_alive == true && this.is_invisible == false){
+					this.is_invisible = true;
+					mobs[i].is_alive = false;
+					score += (mobs[i].Var + 1) * 10;
+					break;
+				}
+			}
+	  	}
+		for(int i=0; i<4; i++){
+			if(abs(Forts[i].xpos - this.xpos) <= 40 && this.ypos - Forts[i].ypos - 10 == 0){
+				if(Forts[i].is_broken == false){
+					this.is_invisible = true;
+				}
 			}
 		}
-	  }
-	  for(int i=0; i<4; i++){
-		if(abs(Forts[i].xpos - this.xpos) <= 40 && this.ypos - Forts[i].ypos - 10 == 0){
-			this.is_invisible = true;
-		}
-	  }
 	}
 }
 
@@ -209,11 +225,15 @@ void show_menu() {
 	textFont(ebm);
 	textAlign(CENTER);
 	fill(0xff, 0xff, 0x00);
-	text("SPACE INVADER", width/2, height/3 + 10);
+	text("SPACE INVADER", width/2, height/3);
 
 	textSize(25);
 	fill(0xff);
-	text("PRESS ENTER TO START", width/2, 2*height/3);
+	text("PRESS ENTER TO START", width/2, height/2);
+
+	text("Use Mouse to Control Player",width/2, height/2 + 50);
+	text("Click to Shoot Laser Beam", width/2, height/2 + 100);
+	text("GOOD LUCK!", width/2, height/2 + 150);
 }
 void init_data() {
 	score = 0;
@@ -233,38 +253,54 @@ void init_data() {
 void show_data(){
 	fill(0xff);
 	textAlign(CORNER);
+	textSize(30);
 	text("SCORE:" + score, 20, 50);
 }
 
 void play_game() {
-	show_data();
-	player.draw_player();
-	for(int i=0; i<4; i++){
-		Forts[i].draw_forts(i);
+	if(is_game_over == false){
+		show_data();
+		player.check_mouse();
+		player.draw_player();
+		for(int i=0; i<4; i++){
+			Forts[i].check_HP();
+			Forts[i].draw_forts(i);
+		}
+		
+		for(int i=0; i<MAX; i++){
+			mobs[i].draw_mobs();
+			mobs[i].check_dir();
+		}
+		for(int i=0; i<MAX; i++){
+			mobs[i].update_pos();
+			mobs[i].go_down();
+		}
+		for(int i=0; i<30; i++){
+			flaser[i].collision_detect();
+			flaser[i].draw_flaser();
+			elaser[i].collision_detect();
+			elaser[i].draw_elaser();
+		}
+		if(clock%200==0){
+			int temp = (int)random(30);
+			elaser[index_e] = new enemy_laser(mobs[temp].xpos, mobs[temp].ypos);
+			if(index_e < 29) index_e++;
+			else index_e = 0;
+		}
+		clock++;
+		pre_direction_is_right = direction_is_right;
 	}
 	
-	for(int i=0; i<MAX; i++){
-		mobs[i].draw_mobs();
-		mobs[i].check_dir();
+	else if(is_game_over == true){
+		fill(0xff,0x00,0x00);
+		textSize(60);
+		textAlign(CENTER);
+		text("GAME IS OVER", width/2, height/3);
+		textSize(40);
+		fill(0xff);
+		text("SCORE:" + score, width/2, height/2);
+		text("Press R to Restart", width/2, height * 2/3);
 	}
-	for(int i=0; i<MAX; i++){
-		mobs[i].update_pos();
-		mobs[i].go_down();
-	}
-	for(int i=0; i<30; i++){
-		flaser[i].collision_detect();
-		flaser[i].draw_flaser();
-		elaser[i].collision_detect();
-		elaser[i].draw_elaser();
-	}
-	if(clock%200==0){
-		int temp = (int)random(30);
-		elaser[index_e] = new enemy_laser(mobs[temp].xpos, mobs[temp].ypos);
-		if(index_e < 29) index_e++;
-		else index_e = 0;
-	}
-	clock++;
-	pre_direction_is_right = direction_is_right;
 }
 
 void keyPressed() {
@@ -272,10 +308,14 @@ void keyPressed() {
 		is_menu_showed = false;
 		is_game_played = true;
 	}
+	if (key == 'r'){
+		init_data();
+		is_game_over = false;
+	}
 }
 
-void mouseClicked(){
-	flaser[index_f] = new friend_laser(mouseX, 660);
+void mousePressed(){
+	flaser[index_f] = new friend_laser(player.xpos, player.ypos - 10);
 	if(index_f < 29) index_f++;
 	else index_f = 0;
 }
