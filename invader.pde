@@ -14,6 +14,7 @@ int score; // スコア
 boolean direction_is_right = true; // モブが移動する方向
 boolean pre_direction_is_right = true; // 一つ前のフレームにおいてモブがどっち向きだったか
 boolean is_game_over; // ゲームオーバーかどうか
+boolean is_game_cleared;
 int MAX = 32; //モブの数
 mob[] mobs = new mob[MAX]; // モブの配列
 Fort[] Forts = new Fort[4]; // 守るための壁の配列
@@ -212,6 +213,7 @@ void setup() {
 	img5 = loadImage("player.png"); //操作する砲台（？）
 	is_menu_showed = true; //メニュー画面を表示させておく
 	is_game_played = false; //ゲームは始まっていない
+	is_game_cleared = false; //クリアされていない
 	imageMode(CENTER);
 	init_data(); //ゲームを始める準備
 }
@@ -247,7 +249,7 @@ void init_data() { //イニシャライズ
 		Forts[i] = new Fort(90 + 140*i, 600); //砦の位置を決定
 	}
 	for(int i=0; i<30; i++){
-		flaser[i] = new friend_laser(0,0); //レーザー配列をぬるぽがで内容に初期化
+		flaser[i] = new friend_laser(0,0); //レーザー配列をぬるぽがでないように初期化
 		elaser[i] = new enemy_laser(0,0);
 	}
 
@@ -261,7 +263,17 @@ void show_data(){ //スコアを表示させるだけの機能
 }
 
 void play_game() {
-	if(is_game_over == false){ //ゲームオーバーじゃない時
+	if(is_game_cleared == true){ //クリア時の画面表示
+		fill(0xff,0xff,0x00);
+		textSize(50);
+		textAlign(CENTER);
+		text("CONGRATULATION!", width/2, height/3);
+		textSize(40);
+		fill(0xff);
+		text("SCORE:" + score, width/2, height/2);
+		text("Press R to Restart", width/2, height * 2/3);
+	}
+	else if(is_game_over == false){ //ゲームオーバーじゃない時
 		show_data(); //スコアを表示
 		player.check_mouse(); //マウスの位置を取得
 		player.draw_player(); //プレイヤーを表示
@@ -289,10 +301,11 @@ void play_game() {
 			if(index_e < 29) index_e++;
 			else index_e = 0;
 		}
+		clear_check();
 		clock++;
 		pre_direction_is_right = direction_is_right;
 	}
-	else if(is_game_over == true){ //ゲームオーバー時の画面表示
+	else if(is_game_over == true && is_game_cleared == false){ //ゲームオーバー時の画面表示
 		fill(0xff,0x00,0x00);
 		textSize(60);
 		textAlign(CENTER);
@@ -302,6 +315,15 @@ void play_game() {
 		text("SCORE:" + score, width/2, height/2);
 		text("Press R to Restart", width/2, height * 2/3);
 	}
+	
+}
+
+void clear_check(){
+	int dead_count = 0;
+	for(int i=0; i<MAX; i++){
+		if(mobs[i].is_alive == false) dead_count++;
+	}
+	if(dead_count == MAX-1) is_game_cleared = true;
 }
 
 void keyPressed() {
@@ -309,9 +331,10 @@ void keyPressed() {
 		is_menu_showed = false;
 		is_game_played = true;
 	}
-	if (key == 'r' && is_game_over){
+	if (key == 'r' && (is_game_over || is_game_cleared)){
 		init_data();
 		is_game_over = false;
+		is_game_cleared = false;
 	}
 }
 
