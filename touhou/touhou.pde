@@ -458,6 +458,7 @@ void control_bomb() {
                         }
                     }
                 }
+                
             }
         }
     }

@@ -1,0 +1,39 @@
+\documentclass[a4paper]{ltjsarticle}
+\begin{document}
+例として、
+
+$y= 2x^{8}-4x^{7}+6x^{6}-8x^{5}-10x^{4}+12x^{3}-14x^{2}+16x+18$
+
+という式を計算するものとする
+\section{方法1}
+$y = 2 \times x\times x\times x\times x\times x\times x\times x\times x - 4 \times x\times x\times x\times x\times x
+\times x\times x + 6\times x\times x\times x\times x\times x\times x - 8 \times x\times x\times x\times x\times x
+-10\times x\times x\times x\times x+12\times x\times x\times x-14\times x\times x+16\times x+18$
+
+計算回数　: 乗算39回,加減算8回.
+$x = 5$のとき、$y = 4438748$となる。
+
+\section{方法2}
+$x_{2} = x\times x,x_{3}=x_{2}\times x,x_{4}=x_{3}\times x,x_{5}=x_{4}\times x,x_{6}=x_{5}\times x,x_{7}=x_{6}\times x,x_{8}=x_{7}\times x$
+
+$y = 2\times x_{8}-4\times x_{7}+6\times x_{6}-8\times x_{5}-10\times x_{4}+12\times x_{3}-14\times x_{2}+16\times x+18$
+
+計算回数:乗算15回、加減算8回
+$x = 5$のとき、$y = 4438748$となる。
+
+\section{方法3}
+$y = (((((((2x-4)x+6)x-8)x-10)x+12)x-14)x+16)+18$
+
+\begin{center}
+  $y \leftarrow 2 \\
+  y\leftarrow y \times x - 4 \\
+  y\leftarrow y \times x + 6 \\
+  y\leftarrow y \times x - 8 \\
+  y\leftarrow y \times x - 10 \\
+  y\leftarrow y \times x + 12 \\
+  y\leftarrow y \times x + 16 \\
+  y\leftarrow y \times x + 18 \\$
+  計算回数:乗算8回,加減算8回.
+  $x = 5$のとき、$y = 4438748$となる。
+\end{center}
+\end{document}

@@ -1,0 +1,45 @@
+\documentclass[a4paper,11pt]{ltjsarticle}
+
+
+% 数式
+\usepackage{amsmath,amsfonts}
+\usepackage{bm}
+% 画像
+\usepackage[dvipdfmx]{graphicx}
+
+
+\begin{document}
+
+\title{線形システム解析　第一回レポート}
+\author{氏名:関川　謙人\\学籍番号:2022531033}
+\date{\today}
+\maketitle
+
+\section*{問1}
+\begin{equation*}
+  y_{k+1}=5y_{k}+6y_{k-1}
+\end{equation*}
+\label{ex:AX}
+\begin{gather}
+  x_{k+1}=Ax_{k}\\
+  \label{ex:CX}
+  y_{k}=Cx_{k} 
+\end{gather}
+ただし、
+\label{ex:xk=y}
+\begin{equation}
+  x_{k}=
+  \begin{pmatrix}
+    y_{k} \\
+    y_{k-1}
+  \end{pmatrix}
+\end{equation*}
+以上が前提条件である。
+$y_{k}=[1|0]x_{k}$、式\ref{ex:CX}より、$C=[1,0]$
+
+式\ref{ex:xk=y}、式\ref{ex:AX}より、
+\begin{equation*}
+  x_{k+1}=\pmatrix{}
+\end{equation}
+
+\end{document}

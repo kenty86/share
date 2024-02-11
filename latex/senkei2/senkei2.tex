@@ -1,0 +1,354 @@
+\documentclass[a4paper,11pt]{ltjsarticle}
+
+
+% 数式
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{mathtools}
+\usepackage{bm}
+% 画像
+\usepackage[dvipdfmx]{graphicx}
+%色
+\usepackage{color}
+
+\begin{document}
+
+\title{線形システム解析\\後半レポート}
+\author{2022531033 関川謙人}
+\date{\today}
+\maketitle
+\section*{問1}
+差分方程式
+\begin{equation*}
+  y_{k+1} = 0.5y_{k}+0.5u_{k}
+\end{equation*}
+のインパルス応答を求めよ
+\begin{gather*}
+  y_{k} = CA^{k}x_{0}+CA^{k-1}Bu_{0}+CABu_{k-2}+CBu_{k-1}\dotsb \\
+  h_{k}を、\\
+  h_{k}=
+  \begin{cases}
+    CA^{k-1}B & (k \geq 1) \\
+    0 & (k < 1)
+  \end{cases}
+  とおくと、\\
+  y_{k}は、\\
+  \begin{split}
+    y_{k} &= h_{k}u_{0}+h_{k-1}u_{1}+\dotsb+h_{2}u_{k-2}+h_{1}u_{k-1}\\
+    &= \sum_{i=0}^{k-1}h_{k-1}u_{i}
+  \end{split}
+\end{gather*}
+この時の$h_{k}$を\textcolor{red}{インパルス応答}と呼ぶ。
+\begin{gather*}
+  この問いにおいて、y_{k}とx_{k}の関係式は\\
+  \left(
+    \begin{split}
+    x_{k+1} &= 0.5x_{k} + 0.5u_{k} \\
+    y_{k} &= x_{k}
+    \end{split}
+  \right.
+  であり、\\
+  \left(
+    \begin{split}
+      x_{k+1} &= Ax_{k} + Bu_{k} \\
+      y_{k} &= Cx_{k}
+    \end{split}
+  \right.
+  である。
+  \\係数比較すると、
+  \begin{pmatrix}
+    A = 0.5 \\
+    B = 0.5 \\
+    C = 1 \\
+  \end{pmatrix}
+  \\
+  \\ここで、インパルス入力は、
+  \\u_{k}=
+  \begin{cases}
+    1 & (k = 0) \\
+    0 & (k \neq 0)
+  \end{cases}
+  \\であるため、インパルス応答h_{k}は、
+  \begin{cases}
+    0.5^{k} & (k = 0) \\
+    0 & (k \neq 0)
+  \end{cases}
+\end{gather*}
+となる。
+\section*{問2}
+時系列$x_{k}$を、\\
+\begin{equation*}
+  x_{k} =
+  \begin{cases}
+    1 & (k \geqq 0かつkが偶数) \\
+    0 & (k \geqq 0かつkが奇数) \\
+    0 & (それ以外)
+  \end{cases}
+\end{equation*}
+とする。この$x_{k}$のZ変換$X(z)$を求めよ。\\
+時系列$\lbrace{x_{k}}\rbrace^{\infty}_{k=-\infty}$に対し、\\
+\textcolor{red}{
+\begin{equation}
+  X_(z) = \sum_{i = -\infty}^{\infty}x_{i}z^{-i}
+\end{equation}
+}
+\begin{gather*}
+  \begin{split}
+    X(z) &= Z[x_{k}] \\
+    &= \sum_{i =- \infty}^{\infty}u_{i}z^{-i} = \sum_{i=0}^{\infty}u_{i}z^{-i}\\
+    &= 1 - z^{-1} + z^{-2} + \dotsb -z^{-2k-1} + z^{-2k} \\
+    &= \frac{1}{1-(-z^{-1})} \ (|x^{-1}| < 1) \\
+    &= \frac{1}{1+z^{-1}} = \frac{z}{z+1}
+  \end{split}
+\end{gather*}
+\section*{問3}
+インパルス応答が\\
+\begin{equation*}
+  h_{k}=
+  \begin{cases*}
+    0.8^{k-1} & (k \geqq 1) \\
+    0 & (k < 1)
+  \end{cases*}
+\end{equation*}
+\\のシステムにステップ入力\\
+\begin{equation*}
+  u_{k}=
+  \begin{cases*}
+    1 & (k \geqq 0) \\
+    0 & (k < 0)
+  \end{cases*}
+\end{equation*}
+\\
+を加えたときの応答$y_{k}$を求めよ。
+
+$H(z),U(z)$を求め、$Y(z)=H(z)U(z)$を求めて逆Z変換することで
+応答を求めることができる。
+
+まず、$H(z),U(z)$を求める。\\
+\begin{gather*}
+  \begin{split}
+    H(z) 
+    &= Z[h_{k}] \\
+    &= \sum_{i = -\infty}^{\infty}h_{k}z^{-i} \\
+    &= \sum_{i = 1}^{\infty}0.8^{k-1}z^{-i} \\
+    &= z^{-1} + 0.8z^{-2} + 0.8^{2}z^{-3} \dotsb \\
+    &= \frac{z^{-1}}{1 - 0.8z^{-1}} \ (|z^{-1}| < 1) \\
+    &= \frac{1}{z-0.8}
+  \end{split}
+\end{gather*}
+
+\begin{gather*}
+  \begin{split}
+    U(z) 
+    &= Z[u_{k}]\\
+    &= \sum_{i = -\infty}^{\infty}u_{k}z^{-i} \\
+    &= \sum_{i = 0}^{\infty}1z^{-i} \\
+    &= 1 + z^{-1} + z^{-2} + \dotsb \\
+    &= \frac{1}{1 - z^{-1}} \ (|z^{-1}| < 1) \\
+    &= \frac{z}{z-1}
+  \end{split}
+\end{gather*}
+$Y(z) = H(z)U(z)$であるため、\\
+\begin{gather*}
+  \begin{split}
+    Y(z) 
+    &=\frac{1}{z-0.8} ・ \frac{z}{z-1} \\
+    &=\frac{z}{(z-0.8)(z-1)}
+  \end{split}
+\end{gather*}
+\\部分分数分解を用いて、
+\begin{equation*}
+  Y(z) = \frac{a}{(z-0.8)} + \frac{b}{(z-1)}
+\end{equation*}
+\\このとき両辺に$(z-0.8)$をかけると、
+\begin{equation*}
+  (z-0.8)Y(z) = a + \frac{(z-0.8)}{(z-1)}b
+\end{equation*}
+この時、$z → 0.8$において、
+\begin{equation*}
+  (z-0.8)Y(z) = a + 0
+\end{equation*}
+である。よって、
+\begin{gather*}
+  \begin{split}
+    a &= \lim_{z → 0.8}(z-0.8)Y(z) \\
+    a &= \frac{z}{z-1} \\
+      &= \frac{0.8}{-0.2} = -4.0
+  \end{split}
+\end{gather*}
+\\よって$a = -4.0$である。
+\\また、両辺に$(z-1)$をかけると、
+\begin{equation*}
+  (z-1)Y(z) = \frac{(z-1)}{(z-0.8)}a + b
+\end{equation*}
+この時、$z → 1$において、
+\begin{equation*}
+  (z-1)Y(z) = 0 + b
+\end{equation*}
+である。よって、
+\begin{gather*}
+  \begin{split}
+    b &= \lim_{z → 1}(z-1)Y(z) \\
+    b &= \frac{z}{z-0.8} \\
+      &= \frac{1}{0.2} = 5.0
+  \end{split}
+\end{gather*}
+\\よって$b = 5.0$である。
+この時、$Y(z)$は、
+\begin{equation*}
+  \begin{split}
+    Y(z)
+    &= -4.0\frac{1}{z-0.8} + 5.0 \frac{1}{z-1}
+  \end{split}
+\end{equation*}
+インパルス応答であるため、逆z変換は、
+\begin{equation*}
+  Z^{-1}\left[\frac{1}{z-\alpha}\right] =
+  \begin{cases*}
+    \alpha^{k-1} & (k \geqq 1) \\
+    0 & (k < 1)
+  \end{cases*}
+\end{equation*}
+\\となる。この式を$Y(z)$に当てはめて逆Z変換を行うと、
+\begin{equation*}
+  y_{k}=
+  \begin{cases*}
+    (-4.0) ・ 0.8^{k-1} + 5.0 & (k \geqq 1) \\
+    0 & (k < 1)
+  \end{cases*}
+\end{equation*}
+\\となる
+\section*{問4}
+差分方程式
+\begin{equation*}
+  y_{k+1} = 0.9y_{k} - 0.2y_{k-1} + u_{k}
+\end{equation*}
+\\の伝達関数表現を求めよ。
+z変換より、
+\begin{gather*}
+  zY(z) = 0.9Y(z) - 0.2z^{-1}Y(z) \\
+  U(z) = zY(z) - 0.9Y(z) + 0.2z^{-1}Y(z)
+\end{gather*}
+\\伝達関数を$G(z)$とすると、
+\begin{gather*}
+  Y(z) = G(z)U(z) \\
+  U(z) = (z - 0.9 + 0.2z^{-1})Y(z) \\
+  Y(z) = \frac{1}{(z - 0.9 + 0.2z^{-1})}U(z) \\
+  \begin{split}
+    G(z)
+    &= \frac{1}{a-0.9+0.2z^{-1}} \\
+    &= \frac{z}{z^{2}-0.9z+0.2}
+  \end{split}
+\end{gather*}
+  よって、伝達関数表現は、
+  \begin{equation*}
+    G(z) = \frac{z}{z^{2}-0.9z+0.2}
+  \end{equation*}
+  である。
+\section*{問5}
+差分方程式
+\begin{equation*}
+  y_{k+1} = 1.1y_{k} - 0.3y_{k-1} + u_{k}
+\end{equation*}
+\\にステップ入力
+\begin{equation*}
+  u_{k}=
+  \begin{cases*}
+    1 & k \geq 0 \\
+    0 & k < 0
+  \end{cases*}
+\end{equation*}
+を加えたときの応答$y_{k}$を求めよ。
+
+差分方程式をz変換する。
+\begin{equation*}
+  zY(z) = 1.1Y(z) - 0.3z^{-1}Y(z) + U(z)
+\end{equation*}
+\\移項すると、
+\begin{gather*}
+  U(z) = zY(z) - 1.1Y(z) + 0.3z^{-1}Y(z) \\
+  U(z) = (z -1.1 + 0.3z^{-1})Y(z) \\
+  Y(z) = \frac{z}{z^{2} -1.1z + 0.3}U(z)
+\end{gather*}
+$U(z)$を求める。
+\begin{gather*}
+  \begin{split}
+    U(z) = Z[u_{k}]
+    &= \sum_{i = -\infty}^{\infty}u_{i}z^{-i} \\
+    &= \sum_{i = 0}^{\infty}1 ・ z^{-i} \\
+    &= 1 + z^{-1} + z^{-2} \dotsb \\
+    &= \frac{1}{1-z^{-1}} \ (|z^{-1} < 1|) \\
+    &= \frac{z}{z-1}
+  \end{split}
+\end{gather*}
+\\ここから、$U(z)$を代入してY(z)を部分分数分解する。
+\begin{gather*}
+  \begin{split}
+    Y(z) 
+    &= \frac{z}{z^{2}-1.1z+0.3}・\frac{z}{z-1} \\
+    &= \frac{z^{2}}{(z-0.6)(z-0.5)(z-1)} \\
+    &= \frac{a}{(z-0.6)}+\frac{b}{(z-0.5)}+\frac{c}{(z-1)}\\
+  \end{split}
+\end{gather*}
+$Y(z)を通分して、係数比較を行う。$
+\begin{equation*}
+  Y(z) = \frac{1}{(z-0.6)(z-0.5)(z-1)}+
+  ((a+b+c)z^{2}+(-1.5a-1.6b-1.1c)z+
+  (0.5)a+0.6b+0.3c)
+\end{equation*}
+\\係数比較すると、
+\begin{equation*}
+  \begin{pmatrix}
+    A = -9 \\
+    B = 5 \\
+    C = 5 \\
+  \end{pmatrix}
+\end{equation*}
+\\よって、
+\begin{equation*}
+  Y(z) = -9・\frac{1}{z-0.6} + 5・\frac{1}{z-0.5} + 5・\frac{1}{z-1}
+\end{equation*}
+\\入力信号がステップ信号であるため、逆z変換の式は、
+\begin{equation*}
+  Z^{-1}\left[\frac{1}{z-\alpha}\right] =
+  \begin{cases*}
+    \alpha^{k-1} & (k \geqq 1) \\
+    0 & (k < 1)
+  \end{cases*}
+\end{equation*}
+\\逆z変換をY(z)に対して適用すると、
+\begin{gather*}
+  \begin{split}
+    y_{k} 
+    &= Z^{-1}[Y(z)] \\
+    &=
+    \begin{cases*}
+      -9・0.6^{k-1} + 5・0.5^{k-1} + 5 & (k \geqq 1) \\
+      0 & (k < 0)
+    \end{cases*}
+  \end{split}
+\end{gather*}
+\section*{問6}
+伝達関数$H(z)$が$H(e^{j\omega}) = 3e^{-\frac{\pi}{4}j}$を満たすとすると、この
+伝達関数に$u_{k}=\sin\omega k$を入力したときの定常応答を求めろ。
+
+
+$H(e^{j\omega})$を極座標表示すると、
+\begin{equation*}
+  H(e^{j\omega}) = Ge^{j\phi}\\
+\end{equation*}
+\\この時、
+\begin{equation*}
+  H(e^{j^\omega}) = 3e^{-\frac{\pi}{4}j}
+\end{equation*}
+であるため、
+\begin{equation*}
+  \begin{pmatrix}
+    G = |H(e^{j\omega k})| = 3 \\
+    \phi = \angle H(e^{j \omega k}) = -\frac{\pi}{4}
+  \end{pmatrix}
+\end{equation*}
+  \\以上より$u_{k} = \sin\omega k$を入力したときの定常応答は、
+  \begin{equation*}
+    y_{k} = 3 \sin (\omega k - \frac{\pi}{4})
+  \end{equation*}
+\end{document}
