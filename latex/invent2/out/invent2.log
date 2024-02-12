@@ -1,8 +1,8 @@
-This is LuaHBTeX, Version 1.17.0 (TeX Live 2023)  (format=lualatex 2023.6.14)  11 FEB 2024 21:48
+This is LuaHBTeX, Version 1.17.0 (TeX Live 2023)  (format=lualatex 2023.6.14)  12 FEB 2024 12:20
  restricted system commands enabled.
  file:line:error style messages enabled.
-**c:/Users/kento/document/latex/invent2/invent2.tex
-(c:/Users/kento/document/latex/invent2/invent2.tex
+**c:/Users/kento/document/codes/my_git/share/latex/invent2/invent2.tex
+(c:/Users/kento/document/codes/my_git/share/latex/invent2/invent2.tex
 LaTeX2e <2023-06-01>
 L3 programming layer <2023-06-05>
 Lua module: luaotfload 2022-10-03 3.23 Lua based OpenType font support
@@ -764,25 +764,25 @@ Removing  `ltj.listings_unicode' from `process_input_buffer'.
 <move_bullet.png, id=80, 238.491pt x 251.13824pt>
 File: move_bullet.png Graphic file (type png)
 <use move_bullet.png>
-Package luatex.def Info: move_bullet.png  used on input line 819.
+Package luatex.def Info: move_bullet.png  used on input line 820.
 (luatex.def)             Requested size: 227.62204pt x 239.69894pt.
 
-Overfull \hbox (4.85828pt too wide) in paragraph at lines 819--820
+Overfull \hbox (4.85828pt too wide) in paragraph at lines 820--821
  [] 
  []
 
 <control_bullet.png, id=81, 408.3255pt x 274.626pt>
 File: control_bullet.png Graphic file (type png)
 <use control_bullet.png>
-Package luatex.def Info: control_bullet.png  used on input line 826.
+Package luatex.def Info: control_bullet.png  used on input line 827.
 (luatex.def)             Requested size: 227.62204pt x 153.09389pt.
 
-Overfull \hbox (4.85828pt too wide) in paragraph at lines 826--827
+Overfull \hbox (4.85828pt too wide) in paragraph at lines 827--828
  [] 
  []
 
 
-Overfull \hbox (16.78638pt too wide) in paragraph at lines 816--832
+Overfull \hbox (16.78638pt too wide) in paragraph at lines 817--833
  [][][] 
  []
 
@@ -790,7 +790,7 @@ Overfull \hbox (16.78638pt too wide) in paragraph at lines 816--832
 <bomb_game.png, id=87, 339.06676pt x 328.8285pt>
 File: bomb_game.png Graphic file (type png)
 <use bomb_game.png>
-Package luatex.def Info: bomb_game.png  used on input line 848.
+Package luatex.def Info: bomb_game.png  used on input line 849.
 (luatex.def)             Requested size: 234.71684pt x 227.62204pt.
  [16<./bomb_game.png>]
 Removing  `ltj.process_input_buffer' from `process_input_buffer'.
@@ -800,15 +800,15 @@ Removing  `ltj.listings_unicode' from `process_input_buffer'.
 <bomb_larger.png, id=100, 205.36725pt x 169.8345pt>
 File: bomb_larger.png Graphic file (type png)
 <use bomb_larger.png>
-Package luatex.def Info: bomb_larger.png  used on input line 1035.
+Package luatex.def Info: bomb_larger.png  used on input line 1036.
 (luatex.def)             Requested size: 170.71652pt x 141.18286pt.
 <bomb_enemy.png, id=101, 401.70074pt x 295.1025pt>
 File: bomb_enemy.png Graphic file (type png)
 <use bomb_enemy.png>
-Package luatex.def Info: bomb_enemy.png  used on input line 1042.
+Package luatex.def Info: bomb_enemy.png  used on input line 1043.
 (luatex.def)             Requested size: 170.71652pt x 125.41464pt.
 
-Overfull \hbox (16.78638pt too wide) in paragraph at lines 1032--1048
+Overfull \hbox (16.78638pt too wide) in paragraph at lines 1033--1049
  [][][] 
  []
 
@@ -816,29 +816,59 @@ Overfull \hbox (16.78638pt too wide) in paragraph at lines 1032--1048
 Removing  `ltj.process_input_buffer' from `process_input_buffer'.
 Inserting `ltj.listings_unicode' in `process_input_buffer'.
 Inserting `ltj.process_input_buffer' in `process_input_buffer'. [20]
-Removing  `ltj.listings_unicode' from `process_input_buffer'.(load cache: extra_lmroman10-bold.luc)
+Removing  `ltj.listings_unicode' from `process_input_buffer'. [21]
+
+Package caption Warning: \label without proper reference on input line 1208.
+See the caption package documentation for explanation.
+
+(load cache: extra_lmroman10-bold.luc)
 LaTeX Font Info:    Font shape `JT3/mc/b/n' in size <10> not available
-(Font)              Font shape `JT3/gt/m/n' tried instead on input line 1165.
+(Font)              Font shape `JT3/gt/m/n' tried instead on input line 1181.
 LaTeX Font Info:    Font shape `JT3/gt/m/n' will be
-(Font)              scaled to size 8.44485pt on input line 1165.
+(Font)              scaled to size 8.44485pt on input line 1181.
 LaTeX Font Info:    Font shape `JY3/mc/b/n' in size <10> not available
-(Font)              Font shape `JY3/gt/m/n' tried instead on input line 1165.
+(Font)              Font shape `JY3/gt/m/n' tried instead on input line 1181.
 LaTeX Font Info:    Font shape `JY3/gt/m/n' will be
-(Font)              scaled to size 8.44485pt on input line 1165.
+(Font)              scaled to size 8.44485pt on input line 1181.
 
+LaTeX Warning: Reference `random_move' on page 22 undefined on input line 1181.
 
-LaTeX Warning: Reference `random_move' on page 21 undefined on input line 1165.
-
-<random_move.png, id=112, 412.03937pt x 177.66376pt>
+<random_move.png, id=115, 412.03937pt x 177.66376pt>
 File: random_move.png Graphic file (type png)
 <use random_move.png>
-Package luatex.def Info: random_move.png  used on input line 1191.
+Package luatex.def Info: random_move.png  used on input line 1207.
 (luatex.def)             Requested size: 395.93681pt x 170.71652pt.
-[21]
+<phase1.png, id=117, 375.0813pt x 578.16pt>
+File: phase1.png Graphic file (type png)
+<use phase1.png>
+Package luatex.def Info: phase1.png  used on input line 1234.
+(luatex.def)             Requested size: 92.29349pt x 142.26378pt.
+[22<./random_move.png>]
 Removing  `ltj.process_input_buffer' from `process_input_buffer'.
 Inserting `ltj.listings_unicode' in `process_input_buffer'.
-Inserting `ltj.process_input_buffer' in `process_input_buffer'. [22<./random_move.png>]
-Removing  `ltj.listings_unicode' from `process_input_buffer'. [23] (./out/invent2.aux)
+Inserting `ltj.process_input_buffer' in `process_input_buffer'. [23<./phase1.png>]
+Removing  `ltj.listings_unicode' from `process_input_buffer'.
+<rect_fall.png, id=135, 151.767pt x 148.1535pt>
+File: rect_fall.png Graphic file (type png)
+<use rect_fall.png>
+Package luatex.def Info: rect_fall.png  used on input line 1325.
+(luatex.def)             Requested size: 170.71652pt x 166.65193pt.
+<control_rect.png, id=136, 467.94826pt x 271.61475pt>
+File: control_rect.png Graphic file (type png)
+<use control_rect.png>
+Package luatex.def Info: control_rect.png  used on input line 1332.
+(luatex.def)             Requested size: 284.52756pt x 165.1501pt.
+
+Overfull \hbox (61.7638pt too wide) in paragraph at lines 1332--1333
+ [] 
+ []
+
+
+Overfull \hbox (16.78638pt too wide) in paragraph at lines 1322--1338
+ [][][] 
+ []
+
+[24] [25<./rect_fall.png><./control_rect.png>] (./out/invent2.aux)
  ***********
 LaTeX2e <2023-06-01>
 L3 programming layer <2023-06-05>
@@ -854,19 +884,19 @@ LaTeX Warning: There were undefined references.
 )
 
 Here is how much of LuaTeX's memory you used:
- 9016 strings out of 478043
+ 9046 strings out of 478043
  1822820,1977958 words of node,token memory allocated
  1267 words of node memory still in use:
    10 hlist, 2 vlist, 5 rule, 2 glue, 4 kern, 1 glyph, 302 attribute, 54 glue_spec, 39 attribute_list, 1 write, 13 user_defined nodes
-   avail lists: 1:35,2:238564,3:1261,4:61312,5:20458,6:148,7:25836,8:31,9:58516,10:51,11:1893
- 29269 multiletter control sequences out of 65536+600000
+   avail lists: 1:35,2:238564,3:1261,4:61312,5:20458,6:148,7:25839,8:31,9:58516,10:51,11:1893
+ 29293 multiletter control sequences out of 65536+600000
  96 fonts using 73891127 bytes
- 125i,20n,128p,1814b,855s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 125i,20n,128p,1833b,855s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmroman10-bold.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmmono10-italic.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmmono8-regular.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmmonolt10-bold.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmroman5-regular.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmsans10-regular.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmroman8-regular.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmroman10-regular.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/haranoaji/HaranoAjiGothic-Medium.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmsans12-regular.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmroman12-regular.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/haranoaji/HaranoAjiMincho-Regular.otf><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on invent2.pdf (24 pages, 804551 bytes).
+Output written on invent2.pdf (26 pages, 847623 bytes).
 
-PDF statistics: 228 PDF objects out of 1000 (max. 8388607)
- 128 compressed objects within 2 object streams
+PDF statistics: 242 PDF objects out of 1000 (max. 8388607)
+ 133 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 131072)
- 61 words of extra memory for PDF output out of 10000 (max. 100000000)
+ 71 words of extra memory for PDF output out of 10000 (max. 100000000)
 

@@ -1,6 +1,6 @@
-PWD c:/Users/kento/document/latex/invent2
+PWD c:/Users/kento/document/codes/my_git/share/latex/invent2
 INPUT c:/texlive/2023/texmf-var/web2c/luahbtex/lualatex.fmt
-INPUT c:/Users/kento/document/latex/invent2/invent2.tex
+INPUT c:/Users/kento/document/codes/my_git/share/latex/invent2/invent2.tex
 OUTPUT out/invent2.log
 INPUT c:/texlive/2023/texmf-dist/tex/latex/latexconfig/lualatexquotejobname.lua
 INPUT c:/texlive/2023/texmf-dist/tex/latex/base/ltluatex.lua
@@ -255,6 +255,12 @@ INPUT C:/texlive/2023/texmf-var/luatex-cache/generic/fonts/otl/lmroman10-bold.lu
 INPUT C:/Users/kento/.texlive2023/texmf-var/luatexja/extra_lmroman10-bold.luc
 INPUT ./random_move.png
 INPUT ./random_move.png
+INPUT ./phase1.png
+INPUT ./phase1.png
+INPUT ./rect_fall.png
+INPUT ./rect_fall.png
+INPUT ./control_rect.png
+INPUT ./control_rect.png
 INPUT ./out/invent2.aux
 INPUT c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
 INPUT c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb

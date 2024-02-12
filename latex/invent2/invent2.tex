@@ -709,6 +709,7 @@ SHIFTキーで低速移動を行う。
 	初期y座標 & プレイヤーのy座標-22 \\ \hline
 	弾速 & 20 \\ \hline 
 	攻撃力 & 10 \\ \hline
+	進行方向 & 上(y負方向) \\ \hline
 \end{tabular}
 \end{table}
 
@@ -1073,13 +1074,28 @@ bomb\_contorl()においてはボムの半径内に敵弾が入っている、�
 	\end{center}
 \end{table}
 %敵のパラメータを書く
+\paragraph{パラメータ}
+以下に敵機の基本パラメータを記述する。
+\begin{table}[H]
+	\begin{center}
+		\begin{tabular}{|c|c|}
+			\hline
+			パラメータ & 値\\ \hline \hline
+			初期x座標 & 256 \\ \hline
+			初期y座標 & 200 \\ \hline
+			スピード & 5 \\ \hline
+			最大HP & 16000 \\ \hline
+			ボスかどうか & true \\ \hline
+		\end{tabular}
+	\end{center}
+\end{table}
 \paragraph{ソースコード}
 以下のソースコードで敵機の動作処理を記述した。
 \begin{lstlisting}
 	void setup(){
 		murasame = loadImage("murasame.png");
 		enemy = new Enemy(Game_width / 2,height / 4,50,50,16000,16000,true);
-    //Enemy(x初期値,y初期値,xサイズ,yサイズHP,Max_HP,ボスかどうか)
+    //Enemy(x初期値,y初期値,xサイズ,yサイズ,HP,Max_HP,ボスかどうか)
 	}
 void draw(){
 		if (game_play && phase > 0) {
@@ -1137,7 +1153,7 @@ void draw(){
 									x += 5;
 							}
 							else if (x > xmove) {
-									x -= 5;
+									x -= 5;		
 							}
 					}
 					if (!(y > ymove - 10 && y < ymove + 10)) {
@@ -1189,6 +1205,7 @@ void draw(){
 \begin{figure}[H]
 \begin{center}
 \includegraphics*[height = 6cm]{random_move.png}
+\label{random_move}
 \caption{敵がランダムに動く原理}
 \end{center}
 \end{figure}
@@ -1201,16 +1218,52 @@ void draw(){
 また各フェーズによって動作頻度は異なる。その表を以下に示す。
 \begin{table}[H]
 	\centering
-	\begin{tabular}{|c|c|}
-		うんこ & うんこ3\\ \hline
+	\begin{tabular}{|c|c|c|}
+		\hline
+		フェーズ & 移動頻度 & 移動範囲\\ \hline \hline
+		1 & 1000フレーム & x座標:0～512　y座標 : 0～200\\ \hline
+		2 & 500フレーム & 上に同じ\\ \hline
+		3 & 200フレーム & 上に同じ\\ \hline
+		4 & 300フレーム & x座標 : 0～512　y座標 : 0～800\\ \hline
 	\end{tabular}
 \end{table}
 \subsubsection{フェーズ1}
-フェーズ1には以下の特徴がある
-\begin{itemize}
-	\item 敵は1000フレーム
-	\item 
-\end{itemize}
+フェーズ1では、プレイヤーはランダムに生成される$50 \times 50$平方の四角形を避けることになる。※図\ref{phase1}
+\begin{figure}[H]
+\begin{center}
+\includegraphics*[height = 5cm]{phase1.png}
+\caption{フェーズ1におけるゲーム画面}
+\label{phase1}
+\end{center}
+\end{figure}
+\paragraph{定義に使用した変数・関数}
+新たに以下の変数・関数をフェーズ1の動作定義に使用した。
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|c|}
+		\hline
+		型・クラス & 変数・関数 & 説明 \\ \hline \hline
+		ArrayList<Weapon> & Rect\_attack & 四角形を落とす必殺技のオブジェクト \\ \hline
+		int & NumOfRect & 四角形の数 \\ \hline
+		void & rect\_fall() & 四角形を落とす関数 \\ \hline
+		void & control\_rect & 四角形の制御 \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{パラメータ}
+オブジェクトRect\_attackのパラメータを以下に示す。
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|}
+		\hline
+		パラメータ & 値 \\ \hline \hline
+		初期x座標 & 0～500までのランダム値 \\ \hline
+		初期y座標 & 0～200までのランダム値 \\ \hline
+		弾速 & 10 \\ \hline
+		攻撃力 & 15 \\ \hline
+		進行方向 & 下(y正方向) \\ \hline
+	\end{tabular}
+\end{table}
+
 \paragraph{ソースコード}
 フェーズ1の動作定義に使用したソースコードを以下に示す。
 \begin{lstlisting}
@@ -1253,6 +1306,38 @@ void control_rect() {
     }
 }
 \end{lstlisting}
+
+\paragraph{処理の説明}
+このフェーズでは以下のようにオブジェクトを処理する。
+\begin{itemize}
+	\item 四角形の色は、色相をx座標の値、彩度をy座標の値、明度を400としている。\ref{rect_fall}
+	\item 画面外に出たもしくはプレイヤーに当たった時弾を削除する。
+	\item 四角形は1フレームにつき10下に落ちる。※図\ref{rect_fall}
+	\item プレイヤーの当たり判定は四方25である。※	図\ref{rect_attack}
+	\item プレイヤーが四角形に当たった時プレイヤーは15ダメージを受ける。※図\ref{rect_attack}
+\end{itemize}
+%横に2枚の画像(jpg/png)表示
+\begin{figure}[H]
+\begin{center}
+\begin{tabular}{c}
+\begin{minipage}{0.5\hsize}
+\begin{center}
+\includegraphics[width=6cm]{rect_fall.png}
+\end{center}
+\caption{rect\_fall()関数での処理}
+\label{rect_fall}
+\end{minipage}
+\begin{minipage}{0.5\hsize}
+\begin{center}
+\includegraphics[width=10cm]{control_rect.png}
+\end{center}
+\caption{rect\_control()関数での処理}
+\label{rect_attack}
+\end{minipage}
+\end{tabular}
+\end{center}
+\end{figure}
+\subsubsection{フェーズ2}
 \subsubsection{フェーズ3}
 \subsubsection{フェーズ4}
 \section{結果と考察}
