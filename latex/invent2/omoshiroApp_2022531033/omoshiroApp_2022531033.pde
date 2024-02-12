@@ -228,7 +228,7 @@ void keyPressed() {
         x_push = true;
     }
     if(key == 's'){
-        saveFrame("phase1.png");
+        saveFrame("phase2_1.png");
     }
 }
 

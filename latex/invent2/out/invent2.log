@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.17.0 (TeX Live 2023)  (format=lualatex 2023.6.14)  12 FEB 2024 12:20
+This is LuaHBTeX, Version 1.17.0 (TeX Live 2023)  (format=lualatex 2023.6.14)  12 FEB 2024 14:19
  restricted system commands enabled.
  file:line:error style messages enabled.
 **c:/Users/kento/document/codes/my_git/share/latex/invent2/invent2.tex
@@ -868,7 +868,23 @@ Overfull \hbox (16.78638pt too wide) in paragraph at lines 1322--1338
  [][][] 
  []
 
-[24] [25<./rect_fall.png><./control_rect.png>] (./out/invent2.aux)
+[24]
+<phase2_1.png, id=140, 367.8543pt x 578.16pt>
+File: phase2_1.png Graphic file (type png)
+<use phase2_1.png>
+Package luatex.def Info: phase2_1.png  used on input line 1350.
+(luatex.def)             Requested size: 142.26378pt x 223.6024pt.
+<phase2_2.png, id=141, 367.8543pt x 578.16pt>
+File: phase2_2.png Graphic file (type png)
+<use phase2_2.png>
+Package luatex.def Info: phase2_2.png  used on input line 1357.
+(luatex.def)             Requested size: 142.26378pt x 223.6024pt.
+
+Overfull \hbox (16.78638pt too wide) in paragraph at lines 1347--1363
+ [][][] 
+ []
+
+[25<./rect_fall.png><./control_rect.png><./phase2_1.png><./phase2_2.png>] [26] (./out/invent2.aux)
  ***********
 LaTeX2e <2023-06-01>
 L3 programming layer <2023-06-05>
@@ -884,19 +900,19 @@ LaTeX Warning: There were undefined references.
 )
 
 Here is how much of LuaTeX's memory you used:
- 9046 strings out of 478043
+ 9066 strings out of 478043
  1822820,1977958 words of node,token memory allocated
- 1267 words of node memory still in use:
-   10 hlist, 2 vlist, 5 rule, 2 glue, 4 kern, 1 glyph, 302 attribute, 54 glue_spec, 39 attribute_list, 1 write, 13 user_defined nodes
-   avail lists: 1:35,2:238564,3:1261,4:61312,5:20458,6:148,7:25839,8:31,9:58516,10:51,11:1893
- 29293 multiletter control sequences out of 65536+600000
+ 1291 words of node memory still in use:
+   10 hlist, 2 vlist, 5 rule, 2 glue, 4 kern, 1 glyph, 313 attribute, 54 glue_spec, 40 attribute_list, 1 write, 13 user_defined nodes
+   avail lists: 1:35,2:238552,3:1261,4:61312,5:20458,6:148,7:25839,8:31,9:58516,10:51,11:1893
+ 29309 multiletter control sequences out of 65536+600000
  96 fonts using 73891127 bytes
  125i,20n,128p,1833b,855s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmroman10-bold.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmmono10-italic.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmmono8-regular.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmmonolt10-bold.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmroman5-regular.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmsans10-regular.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmroman8-regular.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmroman10-regular.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/haranoaji/HaranoAjiGothic-Medium.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmsans12-regular.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmroman12-regular.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/haranoaji/HaranoAjiMincho-Regular.otf><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on invent2.pdf (26 pages, 847623 bytes).
+Output written on invent2.pdf (27 pages, 881434 bytes).
 
-PDF statistics: 242 PDF objects out of 1000 (max. 8388607)
- 133 compressed objects within 2 object streams
+PDF statistics: 249 PDF objects out of 1000 (max. 8388607)
+ 135 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 131072)
  71 words of extra memory for PDF output out of 10000 (max. 100000000)
 

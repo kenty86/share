@@ -1,5 +1,5 @@
 # Fdb version 4
-["lualatex"] 1707708043 "c:/Users/kento/document/codes/my_git/share/latex/invent2/invent2.tex" "out/invent2.pdf" "invent2" 1707708051 0
+["lualatex"] 1707715162 "c:/Users/kento/document/codes/my_git/share/latex/invent2/invent2.tex" "out/invent2.pdf" "invent2" 1707715171 0
   "C:/Users/kento/.texlive2023/texmf-var/luatexja/extra_haranoajigothic-medium.luc" 1686714952 321554 5c308441010cd12ef488d3321b2f0c94 ""
   "C:/Users/kento/.texlive2023/texmf-var/luatexja/extra_haranoajimincho-regular.luc" 1686714947 322627 9d9591407bd972fadd77d7ba17ec855a ""
   "C:/Users/kento/.texlive2023/texmf-var/luatexja/extra_lmmono10-italic.luc" 1686721083 16824 6abb624d16ac87d2a08a1eb161a9fae9 ""
@@ -42,7 +42,7 @@
   "bomb_enemy.png" 1707573029 45444 9823aced82e17fef6df9670c2cc6db45 ""
   "bomb_game.png" 1707570077 53095 f307133584ae823138b47717e51820e6 ""
   "bomb_larger.png" 1707572747 15073 e51a89a0ed4077a8f1ecede6c70ea6b5 ""
-  "c:/Users/kento/document/codes/my_git/share/latex/invent2/invent2.tex" 1707708032 48175 38d1b3254bc5c4465e1b7ab2d5f75a05 ""
+  "c:/Users/kento/document/codes/my_git/share/latex/invent2/invent2.tex" 1707715152 48940 de803fcccd13e9db11adc6a37ca972c0 ""
   "c:/texlive/2023/texmf-dist/fonts/opentype/public/haranoaji/HaranoAjiGothic-Medium.otf" 1686675863 4741376 86a576fff5f745f9c216bd5c39772d74 ""
   "c:/texlive/2023/texmf-dist/fonts/opentype/public/haranoaji/HaranoAjiMincho-Regular.otf" 1686675863 6422404 c1a804d3cc8f1cb78b9d9ff0534b8555 ""
   "c:/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmmono10-italic.otf" 1686676488 63584 4d362a77d55d0d8683d2b315bd34f34b ""
@@ -230,11 +230,13 @@
   "control_rect.png" 1707707684 23576 2f4006e4d93a94f42cd433c8bccbd18e ""
   "drawing_30.png" 1706082207 10222 da73cada749cf0d7be58532bfcf17c3d ""
   "enemy_reject.png" 1707397300 45050 65bea95276ffd323c743297c6f6f539d ""
-  "invent2.tex" 1707708032 48175 38d1b3254bc5c4465e1b7ab2d5f75a05 ""
+  "invent2.tex" 1707715152 48940 de803fcccd13e9db11adc6a37ca972c0 ""
   "invent_view.png" 1706442949 372729 48965f5dc20891bd24130c4652e58c6e ""
   "move_bullet.png" 1707559485 9092 e28855a73b59833f259bdbdd5feb6c0f ""
-  "out/invent2.aux" 1707708050 8732 d2d87402afa12d51d1e8375c30b430de "lualatex"
+  "out/invent2.aux" 1707715170 9132 7fc1fede8fd876cca65ad5894d2d8fdf "lualatex"
   "phase1.png" 1707703360 19013 e007004ad801a2350a6afb460514afb5 ""
+  "phase2_1.png" 1707714779 24261 a34975f3a65a938f20280f5c961263b3 ""
+  "phase2_2.png" 1707714797 23387 df267daea3da9a90988a5d7aaa18edf7 ""
   "playing_phase1.png" 1707537163 57186 2f071c0828100fa8be577542cedefa88 ""
   "random_move.png" 1707645286 26507 a0a7dec12e90391e446a13b24e3b671f ""
   "rect_fall.png" 1707707555 6641 2421d92801fdaec9fdcb1c495977d592 ""

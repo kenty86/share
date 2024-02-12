@@ -261,6 +261,10 @@ INPUT ./rect_fall.png
 INPUT ./rect_fall.png
 INPUT ./control_rect.png
 INPUT ./control_rect.png
+INPUT ./phase2_1.png
+INPUT ./phase2_1.png
+INPUT ./phase2_2.png
+INPUT ./phase2_2.png
 INPUT ./out/invent2.aux
 INPUT c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
 INPUT c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
