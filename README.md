@@ -1,5 +1,5 @@
 # share1
-#setting.jsonを以下に掲載する。
+#私がVSCodeで扱ってるsetting.jsonを以下に掲載する。
 ```
 {
     "workbench.colorTheme": "Atom One Dark",
