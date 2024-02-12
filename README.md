@@ -1,6 +1,6 @@
 # share1
 #setting.jsonを以下に掲載する。
-
+```
 {
     "workbench.colorTheme": "Atom One Dark",
     "files.autoGuessEncoding": true,
@@ -160,3 +160,4 @@
     "diffEditor.hideUnchangedRegions.enabled": true,
 
 }
+```
