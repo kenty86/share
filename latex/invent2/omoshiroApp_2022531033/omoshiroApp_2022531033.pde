@@ -228,7 +228,7 @@ void keyPressed() {
         x_push = true;
     }
     if(key == 's'){
-        saveFrame("phase2_1.png");
+        saveFrame("phase4.png");
     }
 }
 
@@ -688,7 +688,6 @@ class Enemy{
             rect( -1, -1,10,10);
             popMatrix();
         }
-        
     }
 }
 //ギア（歯車）の制御。

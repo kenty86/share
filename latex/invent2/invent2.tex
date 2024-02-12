@@ -41,6 +41,8 @@
 	%キャプションの場所("tb"ならば上下両方に記載)
 	captionpos = t
 }
+%目次を付け加える。
+\setcounter{secnumdepth}{5}
 \renewcommand{\lstlistingname}{}
 \begin{document}
 
@@ -48,7 +50,9 @@
 \author{2022531033　関川謙人}
 \date{\today}
 \maketitle
-%目次を付け加える。
+% 目次の出力
+\tableofcontents
+\clearpage
 \section{背景}
 \subsection{経緯}
 元々関数電卓や数字パズルゲームを作ることを画策していたのだが電卓は数式の表示方法
@@ -675,7 +679,7 @@ SHIFTキーで低速移動を行う。
 自機弾を発射する必殺技を基本技と定義する。
 \begin{figure}[H]
 \begin{center}
-\includegraphics*[height = 8cm]{basic_avility.png}
+\includegraphics*[height = 6cm]{basic_avility.png}
 \caption{基本技}
 \end{center}
 \end{figure}
@@ -693,7 +697,8 @@ SHIFTキーで低速移動を行う。
 		 int & NumOfBullet2 & 右側の自機弾の数 \\ \hline
 		 boolean & z\_push & zキーが押されているかどうか \\ \hline
 		 void & movebullet() & 自機弾を上に動かす関数 \\ \hline
-		 void & control\_bullet() & 自機弾の管理 \\ \hline 
+		 void & control\_bullet() & 自機弾の管理 \\ \hline
+		 float & dist() & 二点間の距離を算出する組み込み関数 \\ \hline 
 		\end{tabular}
 	\end{center}
 \end{table}
@@ -892,6 +897,7 @@ control\_bullet()関数では以下の役割を果たしている。
 	}
 	void draw(){
 		//xキーでボム発射。
+		if(game=play && phase>0){
         if (x_push) {
             //XPが足りているかの判定かつXPが余計に減るのを防ぐ。
             if (player.XP >= 10 && x_count == 1) {
@@ -909,6 +915,7 @@ control\_bullet()関数では以下の役割を果たしている。
             x_count = 0;
         }
 				control_bomb();
+		}
 	}
 	void keyPressed(){
 		if (key == 'x' || key == 'X') {
@@ -920,98 +927,98 @@ control\_bullet()関数では以下の役割を果たしている。
         x_push = false;
     }
 	}
-	Weapon{
+class Weapon{
 		void bomb() {
         r += speed / NumOfbomb;
         strokeWeight(2);
         noFill();
         stroke(x,y,400);
         ellipse(x, y, r, r);
-    }
-	}
-	void control_bomb() {
-    float distance = 500; //ボムとオブジェクトの間の距離。500として初期化する。
-    if (NumOfbomb > 0) {
-        for (int i = 0; i < NumOfbomb - 1; i++) {
-            //各ボムの挙動
-            bomb.get(i).bomb();
-            //ボムの大きさが200を超えたとき、ボムを消す。
-            if (bomb.get(i).r > 200) {
-                bomb.remove(i);
-                NumOfbomb--;
-            }
-            distance = dist(bomb.get(i).x,bomb.get(i).y,enemy.x,enemy.y); //ボムと敵の間の距離
-            if (distance < bomb.get(i).r) { 
-                enemy.HP -= bomb.get(i).atk;//敵がボムの射程圏内の場合、敵にダメージを与える。
-            }
-            //ボムと四角形の間の距離を計算し処理
-            //第一フェーズでのボムの挙動
-            if (phase == 1 && NumOfRect > 0) {
-                for (int j = 0; j < NumOfRect; j++) {
-                    distance = dist(bomb.get(i).x,bomb.get(i).y,Rect_attack.get(j).x,Rect_attack.get(j).y); //ボムと四角形の間の距離。
-                    if (distance < bomb.get(i).r + 25) {
-                        Rect_attack.remove(j); //ボムが四角形に触れた場合、四角形を削除する。
-                        NumOfRect--; //四角形のカウントを減らす。
-                    }
-                }
-            }
-            //第二フェーズでのボムの挙動。
-            else if (phase == 2 && NumOfCParts > 0) {
-                for (int j = 0; j < NumOfCParts; j++) {
-                    distance = dist(bomb.get(i).x,bomb.get(i).y,Cparts.get(j).x,Cparts.get(j).y); //ボムと円状弾の距離。
-                    if (distance < bomb.get(i).r + 5) {
-                        Cparts.remove(j);//ボムが弾に触れた場合、弾を削除する。
-                        NumOfCParts--; //弾のカウントを減らす。
-                    }
-                }
-            }
-            //第三フェーズでのボムの挙動。
-            else if (phase == 3) {
-                //sinb弾の数が0より多い時。
-                if (NumOfsinb > 0) {
-                    for (int j = 0; j < NumOfsinb; j++) {
-                        distance = dist(bomb.get(i).x,bomb.get(i).y,sinb.get(j).x,sinb.get(j).y); //ボムとsin弾の距離。
-                        if (distance < bomb.get(i).r + 5) {
-                            sinb.remove(j); //sin弾を削除する。
-                            NumOfsinb--; //sin弾のカウントを減らす。
-                        }
-                    }
-                }
-                if (NumOfcosb > 0) {
-                    for (int j = 0; j < NumOfcosb; j++) {
-                        distance = dist(bomb.get(i).x,bomb.get(i).y,cosb.get(j).x,cosb.get(j).y);//ボムとcos弾の距離。
-                        if (distance < bomb.get(i).r) {
-                            //ボムの射程範囲内にcos弾が入った時
-                            cosb.remove(j); //cos弾を削除する。
-                            NumOfcosb--; //cos弾のカウントを減らす。
-                        }
-                    }
-                }
-            }
-            //最終フェーズでのボムの挙動。
-            else if (phase == 4) {
-                if (NumOfgearb > 0) {
-                    for (int j = 0; j < NumOfgearb; j++) {
-                        distance = dist(bomb.get(i).x,bomb.get(i).y,gear_bullet.get(j).x,gear_bullet.get(j).y); //ボムとギアの弾の間の距離。
-                        //ギアの弾がボムの射程圏内に入った時
-                        if (distance < bomb.get(i).r) {
-                            gear_bullet.remove(j); //ギアの弾を削除する。
-                            NumOfgearb--; //ギアの弾のカウントを減らす。
-                        }
-                    }
-                }
-                if (NumOfgear > 0) {
-                    for (int j = 0; j < NumOfgear; j++) {
-                        distance = dist(bomb.get(i).x,bomb.get(i).y,gear.get(j).x,gear.get(j).y);//ボムとギアの間の距離。
-                        if (distance < bomb.get(i).r) {
-                            //ギアがボムの射程圏内に入った場合
-                            gear.get(j).HP -= bomb.get(i).atk; //ギア（歯車）にダメージを与える。
-                        }
-                    }
-                }
-            }
-        }
-    }
+  }
+}
+void control_bomb() {
+  float distance = 500; //ボムとオブジェクトの間の距離。500として初期化する。
+  if (NumOfbomb > 0) {
+      for (int i = 0; i < NumOfbomb - 1; i++) {
+          //各ボムの挙動
+          bomb.get(i).bomb();
+          //ボムの大きさが200を超えたとき、ボムを消す。
+          if (bomb.get(i).r > 200) {
+              bomb.remove(i);
+              NumOfbomb--;
+          }
+          distance = dist(bomb.get(i).x,bomb.get(i).y,enemy.x,enemy.y); //ボムと敵の間の距離
+          if (distance < bomb.get(i).r) { 
+              enemy.HP -= bomb.get(i).atk;//敵がボムの射程圏内の場合、敵にダメージを与える。
+          }
+          //ボムと四角形の間の距離を計算し処理
+          //第一フェーズでのボムの挙動
+          if (phase == 1 && NumOfRect > 0) {
+              for (int j = 0; j < NumOfRect; j++) {
+                  distance = dist(bomb.get(i).x,bomb.get(i).y,Rect_attack.get(j).x,Rect_attack.get(j).y); //ボムと四角形の間の距離。
+                  if (distance < bomb.get(i).r + 25) {
+                      Rect_attack.remove(j); //ボムが四角形に触れた場合、四角形を削除する。
+                      NumOfRect--; //四角形のカウントを減らす。
+                  }
+              }
+          }
+          //第二フェーズでのボムの挙動。
+          else if (phase == 2 && NumOfCParts > 0) {
+              for (int j = 0; j < NumOfCParts; j++) {
+                  distance = dist(bomb.get(i).x,bomb.get(i).y,Cparts.get(j).x,Cparts.get(j).y); //ボムと円状弾の距離。
+                  if (distance < bomb.get(i).r + 5) {
+                      Cparts.remove(j);//ボムが弾に触れた場合、弾を削除する。
+                      NumOfCParts--; //弾のカウントを減らす。
+                  }
+              }
+          }
+          //第三フェーズでのボムの挙動。
+          else if (phase == 3) {
+              //sinb弾の数が0より多い時。
+              if (NumOfsinb > 0) {
+                  for (int j = 0; j < NumOfsinb; j++) {
+                      distance = dist(bomb.get(i).x,bomb.get(i).y,sinb.get(j).x,sinb.get(j).y); //ボムとsin弾の距離。
+                      if (distance < bomb.get(i).r + 5) {
+                          sinb.remove(j); //sin弾を削除する。
+                          NumOfsinb--; //sin弾のカウントを減らす。
+                      }
+                  }
+              }
+              if (NumOfcosb > 0) {
+                  for (int j = 0; j < NumOfcosb; j++) {
+                      distance = dist(bomb.get(i).x,bomb.get(i).y,cosb.get(j).x,cosb.get(j).y);//ボムとcos弾の距離。
+                      if (distance < bomb.get(i).r) {
+                          //ボムの射程範囲内にcos弾が入った時
+                          cosb.remove(j); //cos弾を削除する。
+                          NumOfcosb--; //cos弾のカウントを減らす。
+                      }
+                  }
+              }
+          }
+          //最終フェーズでのボムの挙動。
+          else if (phase == 4) {
+              if (NumOfgearb > 0) {
+                  for (int j = 0; j < NumOfgearb; j++) {
+                      distance = dist(bomb.get(i).x,bomb.get(i).y,gear_bullet.get(j).x,gear_bullet.get(j).y); //ボムとギアの弾の間の距離。
+                      //ギアの弾がボムの射程圏内に入った時
+                      if (distance < bomb.get(i).r) {
+                          gear_bullet.remove(j); //ギアの弾を削除する。
+                          NumOfgearb--; //ギアの弾のカウントを減らす。
+                      }
+                  }
+              }
+              if (NumOfgear > 0) {
+                  for (int j = 0; j < NumOfgear; j++) {
+                      distance = dist(bomb.get(i).x,bomb.get(i).y,gear.get(j).x,gear.get(j).y);//ボムとギアの間の距離。
+                      if (distance < bomb.get(i).r) {
+                          //ギアがボムの射程圏内に入った場合
+                          gear.get(j).HP -= bomb.get(i).atk; //ギア（歯車）にダメージを与える。
+                      }
+                  }
+              }
+          }
+      }
+  }
 }
 \end{lstlisting}
 \paragraph{処理の説明}
@@ -1205,8 +1212,8 @@ void draw(){
 \begin{figure}[H]
 \begin{center}
 \includegraphics*[height = 6cm]{random_move.png}
-\label{random_move}
 \caption{敵がランダムに動く原理}
+\label{random_move}
 \end{center}
 \end{figure}
 また初めは敵が目的点に到達したときに止まるように定義したが
@@ -1260,6 +1267,7 @@ void draw(){
 		初期y座標 & 0～200までのランダム値 \\ \hline
 		弾速 & 10 \\ \hline
 		攻撃力 & 15 \\ \hline
+		発射頻度 & 10フレーム \\ \hline
 		進行方向 & 下(y正方向) \\ \hline
 	\end{tabular}
 \end{table}
@@ -1271,12 +1279,14 @@ void setup(){
 	Rect_attack = new ArrayList<Weapon>(); //敵の玉を定義
 }
 void draw(){
-	//第一フェーズの弾を生成
-  if (phase == 1 && frameCount % 10 == 0) {
-    Rect_attack.add(new Weapon(random(500),random(200),10,15,0,0,0));
-    NumOfRect++;
-  }
-	control_rect();
+	if(game_play && phase > 0){
+		//第一フェーズの弾を生成
+  	if (phase == 1 && frameCount % 10 == 0) {
+  	  Rect_attack.add(new Weapon(random(500),random(200),10,15,0,0,0));
+  	  NumOfRect++;
+  	}
+		control_rect();
+	}	
 }
 class Weapon{
 	//四角形を落とす
@@ -1363,32 +1373,524 @@ void control_rect() {
 \end{center}
 \end{figure}
 
+\paragraph{定義に使用した関数・変数}
+以下の変数・関数をフェーズ2の動作定義に使用した。
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|c|}
+		\hline
+		型 & 変数・関数 & 説明\\ \hline \hline
+		ArrayList<Weapon> & Cparts & 円状の攻撃弾を表すオブジェクト\\ \hline
+		int & NumOfCParts & 攻撃弾の数\\ \hline
+		float & vecX & 弾のxベクトル \\ \hline
+		float & vecY & 弾のyベクトル \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{パラメータ}
+	オブジェクトCpartsのパラメータは以下の表のとおり。
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{|c|c|}
+			\hline
+			パラメータ & 値\\ \hline \hline
+			x初期位置 & 敵機のx座標 \\ \hline
+			y初期位置 & 敵機のy座標 \\ \hline
+			弾速 & 3 \\ \hline
+			攻撃力 & 5 \\ \hline
+			発射頻度 & 10フレーム\\ \hline
+			x進行方向(単位ベクトル) & (12 * (1～36の整数)) + (弾の数 / 30) \\ \hline
+			y進行方向(単位ベクトル) & (12 * (1～36の整数)) + (弾の数 / 30) \\ \hline
+		\end{tabular}
+	\end{table}
 \paragraph{ソースコード}
 フェーズ2の動作定義に使用したソースコードを以下に示す。
 \begin{lstlisting}
-void setup(){}
-void draw(){}
-class Weapon{}
+void setup(){
+	Cparts = new ArrayList<Weapon>(); //敵の弾を定義
+}
+void draw(){
+	if(game_play && phase > 0){
+		//第二フェーズの弾を生成
+		if (phase == 2 && frameCount % 10 == 0) {
+				for (int i = 0; i < 30; i++) {
+						//敵の中心から円状に弾を発射する。弾の数に応じて軌道を少しづつずらす。
+						Cparts.add(new Weapon(enemy.x,enemy.y,3,5,0,(12 * i) + NumOfCParts / 30,(12 * i) + NumOfCParts / 30));
+						NumOfCParts++;
+				}
+		}
+		control_cparts();
+		frameCount++;
+	}
+}
+class Weapon{
+	//円状に弾を発射する
+	void cbullet() {
+			noStroke();
+			fill(0,0,400);
+			r += speed / 30;
+			x += r * vecX;
+			y += r * vecY;
+			rect(x,y,10,10);
+	}
+}
+//円状弾の制御
+void control_cparts() {
+    if (NumOfCParts > 0) {
+        for (int i = 0; i < NumOfCParts - 1; i++) {
+            Cparts.get(i).cbullet(); //円形弾幕の操作。
+            if (Cparts.get(i).y > height || Cparts.get(i).x > Game_width) {
+                //弾が画面外に出たとき
+                Cparts.remove(i); //弾を削除。
+                NumOfCParts--;
+            }
+            if ((Cparts.get(i).x < player.x + 10 && Cparts.get(i).x > player.x - 10) && (Cparts.get(i).y < player.y + 10 && Cparts.get(i).y > player.y - 10)) {
+                //プレイヤーに弾が当たった時(当たり判定サイズ:10)
+                player.HP -= Cparts.get(i).atk; //プレイヤーがダメージを受ける
+                Cparts.remove(i); //弾を削除する。
+                NumOfCParts--; //弾のカウントを減らす。
+            }
+        }
+    }
+}
 \end{lstlisting}
+\paragraph{処理の説明}
+フェーズ2では以下の処理を行う。※図\ref{Cparts}
+\begin{enumerate}
+	\item 12°感覚で弾を30個配置する。
+	\item 弾と敵機の距離（発射半径）をスピード分大きくする。
+	\item 発射角度を弾の数に応じてずらす。
+	\item 1～3を繰り返す。
+\end{enumerate}
+座標定義を数式で表すと以下のようになる
+\begin{gather*}
+	弾の座標を(x,y)、敵機との距離をr、弾数をnとすると、\\
+	x = r\cos(12 \times i + \frac{n}{30}) \\
+	y = r\sin(12 \times i + \frac{n}{30}) \\
+	また、フレーム更新時に、 \\ 
+	r = r + 5\\ 
+\end{gather*}
+
+また当たり判定はプレイヤーの中心座標から四方10以内である。※図\ref{cb_attack}
+%横に2枚の画像(jpg/png)表示
+\begin{figure}[H]
+\begin{center}
+\begin{tabular}{c}
+\begin{minipage}{0.5\hsize}
+\begin{center}
+\includegraphics[width=6cm]{Cparts.png}
+\end{center}
+\caption{円状攻撃弾の発射原理}
+\label{Cparts}
+\end{minipage}
+\begin{minipage}{0.5\hsize}
+\begin{center}
+\includegraphics[width=4cm]{cb_attack.png}
+\end{center}
+\caption{円状攻撃弾の当たり判定}
+\label{cb_attack}
+\end{minipage}
+\end{tabular}
+\end{center}
+\end{figure}
+以上の処理で弾が座標をずらしながら円状に発射される必殺技を実装している。
 \subsubsection{フェーズ3}
+このフェーズでは、プレイヤーは上から降ってくるsinグラフの形に一定間隔で配置された弾(以降sin弾)と、
+下から降ってくるcosグラフの形に一定間隔で配置された弾(以降cos弾)をよけることになる
+※図\ref{phase3}
+\begin{figure}[H]
+\begin{center}
+\includegraphics*[height = 8cm]{phase3_1.png}
+\caption{フェーズ3におけるゲーム画面}
+\label{phase3}
+\end{center}
+\end{figure}
+\paragraph{使用した変数・関数}
+フェーズ3の定義に使用した変数・関数は以下のとおりである。
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|c|}
+		\hline
+		型 & 変数・関数 & 説明 \\ \hline \hline
+		ArrayList<Weapon> & sinb & sin弾を定義 \\ \hline
+		ArrayList<Weapon> & cosb & cos弾を定義 \\ \hline
+		float & A & sin,cos弾の振幅 \\ \hline
+		float & fire & 一周期につき何個弾を並べるか \\ \hline
+		float & T & 周期 \\ \hline
+		float & biase & グラフをどれくらいずらすか。 \\ \hline
+		int & NumOfsinb & sin弾の数 \\ \hline
+		int & NumOfcosb & cos弾の数 \\ \hline
+		void & tetrab() & sin,cos弾の表示、落下 \\ \hline
+		void & control\_tetra() & sin,cos弾の制御 \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{パラメータ}
+sin,cos弾のパラメータを以下に示す。
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|c|}
+		\hline 
+		パラメータ & 値 & 対象 \\ \hline \hline
+		T(周期) & 360 & 共通 \\ \hline
+		fire(周期数) & 10 & 共通 \\ \hline
+		A(振幅) & 50 & 共通 \\ \hline
+		初期biase & 0 & 共通 \\ \hline
+		i & 何周期目か & 共通 \\ \hline
+		初期x座標 & $360 \times i + 36 \times (整数)$ & 共通 \\ \hline
+		初期y座標 & $50\sin(36 * j)\circ$ & sin弾 \\ \hline
+		初期y座標 & $50\cos(36 * j)\circ$ & cos弾 \\ \hline
+		弾速 & 0.02 & 共通 \\ \hline
+		攻撃力 & 5 & 共通 \\ \hline
+		進行方向 & 下(y正方向) & sin弾 \\ \hline
+		進行方向 & 上(y負方向) & cos弾 \\ \hline
+	\end{tabular}
+\end{table}
 \paragraph{ソースコード}
 フェーズ3の動作定義に使用したソースコードを以下に示す。
 \begin{lstlisting}
-void setup(){}
-void draw(){}
-class Weapon{}
+void setup(){
+	sinb = new ArrayList<Weapon>(); //sin弾を定義。
+  cosb = new ArrayList<Weapon>(); //cos弾を定義。
+}
+void draw(){
+	if(game_play && phase > 0){
+		//第三フェーズの弾を生成。
+		if (phase == 3 && frameCount % 60 == 0) {
+				for (int i = 0; i < 2; i++) {
+						for (int j = 0; j < T / fire; j++) {
+								if (T * i + (T / fire) * j < Game_width) {
+										//Sin状に弾を生成。
+										sinb.add(new Weapon(T * i + (T / fire) * j , A * sin(radians(36 * j)),0.02,5,0,90,90));
+										NumOfsinb++;
+								}
+								if (T * i + (T / fire) * j < Game_width) {
+										//cos状に弾を生成
+										cosb.add(new Weapon(T * i + (T / fire) * j , height - A * cos(radians(36 * j)),0.02,5,0,90, -90));
+										NumOfcosb++;
+								}
+						}
+				}
+		}
+		control_tetra();
+		frameCount++;
+	}
+}
+class Weapon{
+	void tetrab() {
+		x += biase * vecX;
+		y += biase * vecY;
+		noStroke();
+		fill(0,0,400);
+		rect(x,y,10,10);
+		biase += speed;
+	}
+}
+//sin弾の制御
+void control_tetra() {
+    if (NumOfsinb > 0) {
+        for (int i = 0; i < NumOfsinb - 1; i++) {
+            //各弾を動かす。
+            sinb.get(i).tetrab();
+            if (sinb.get(i).y > height) {
+                //弾が画面外に出たとき
+                sinb.remove(i); //sin弾を削除
+                NumOfsinb--; //sin弾のカウントを減らす。
+            }
+            if ((sinb.get(i).x >= player.x - 10 && sinb.get(i).x <= player.x + 10) && (sinb.get(i).y >= player.y - 10 && sinb.get(i).y <= player.y + 10)) {
+                //プレイヤーに弾が当たった時
+                player.HP -= sinb.get(i).atk; //プレイヤーがダメージを受ける。
+                sinb.remove(i); //sin弾を削除。
+                NumOfsinb--; //sin弾のカウントを減らす。
+            }
+        }
+    }
+    if (NumOfcosb > 0) {
+        for (int i = 0; i < NumOfcosb - 1; i++) {
+            cosb.get(i).tetrab();  //各弾を動かす。
+            if (cosb.get(i).y < 0) {
+                //画面外に出たとき
+                cosb.remove(i); //cos弾を削除
+                NumOfcosb--; //cos弾のカウントを減らす。
+            }
+            if ((cosb.get(i).x >= player.x - 10 && cosb.get(i).x <= player.x + 10) && (cosb.get(i).y >= player.y - 10 && cosb.get(i).y <= player.y + 10)) {
+                //プレイヤーに当たった時
+                player.HP -= cosb.get(i).atk; //プレイヤーがダメージを受ける。
+                cosb.remove(i); //cos弾を削除する。
+                NumOfcosb--; //cos弾のカウントを減らす。
+            }
+        }
+    }
+}
 \end{lstlisting}
+\paragraph{処理の説明}
+sin,cos弾の実装において、振幅、周期、一周期における弾数を定義し各弾のy座標にsin,cosを
+かけている。バイアスの値を増やすことによって位置をずらし、降ってくる動きを実装している。
+%横に2枚の画像(jpg/png)表示
+\begin{figure}[H]
+\begin{center}
+\begin{tabular}{c}
+\begin{minipage}{0.5\hsize}
+\begin{center}
+\includegraphics[width=3cm]{sinb.png}
+\end{center}
+\caption{sin弾の動く仕組み}
+\label{}
+\end{minipage}
+\begin{minipage}{0.5\hsize}
+\begin{center}
+\includegraphics[width=3cm]{cosb.png}
+\end{center}
+\caption{cos弾の動く仕組み}
+\label{}
+\end{minipage}
+\end{tabular}
+\end{center}
+\end{figure}
+当たり判定の定義はフェーズ2の弾※図\ref{cb_attack}と同様である。
 \subsubsection{フェーズ4}
+フェーズ4では敵機が歯車型の敵を召喚し、歯車型の敵はランダムに動きながら
+プレイヤーに向けて弾を打つ。それをよけながら敵を倒せばゲームクリアとなる。図\ref{phase4}
+\begin{figure}[H]
+\begin{center}
+\includegraphics*[height = 8cm]{drawing_21.png}
+\caption{フェーズ4におけるゲーム画面}
+\label{phase4}
+\end{center}
+\end{figure}
+\paragraph{使用した関数・変数}
+フェーズ4の動作定義に新たに用いた関数・変数は以下のとおりである。
+\begin{table}[H]
+	\begin{tabular}{|c|c|c|}
+		\hline
+		型・クラス & 関数・変数 & 説明 \\ \hline \hline
+		ArrayList<Enemy> & gear & 歯車型の敵を定義するオブジェクト \\ \hline
+		ArrayList<Weapon> & gear\_bullet & 歯車の発射弾を定義するオブジェクト \\ \hline
+		boolean & gear\_push & 歯車を発射したかどうか  \\ \hline
+		int & NumOfgear & 歯車の数。初期値は8 \\ \hline
+		int & NumOfgearb & 歯車の発射弾の数。 \\ \hline
+		void & control\_gear() & 歯車型の敵を制御  \\ \hline
+		void & gear() & 歯車型の敵を表示。 \\ \hline
+		float & atan2() & 二点間の角度を求める関数。 \\ \hline
+	\end{tabular}
+\end{table}
+\paragraph{パラメータ}
+以下に歯車型の敵及びその発射弾のパラメータを示す。
+\begin{table}[H]
+  \begin{minipage}[h]{.45\textwidth}
+    \begin{center}
+      \begin{tabular}{|c|c|}
+				\hline
+				初期位置 & 敵機の座標 \\ \hline
+				動作範囲 & x座標:0～512　y座標:0～800 \\ \hline
+				移動頻度 & 300フレーム毎 \\ \hline
+				スピード & 10 \\ \hline
+				攻撃力 & 5 \\ \hline
+				最大HP & 500 \\ \hline
+				ボスかどうか & false \\ \hline
+      \end{tabular}
+    \end{center}
+    \caption{歯車のステータス}
+    \label{}
+  \end{minipage}
+  %
+  \hfill
+  %
+  \begin{minipage}[h]{.45\textwidth}
+    \begin{center}
+      \begin{tabular}{|c|c|}
+				\hline
+				初期位置 & 歯車の座標 \\ \hline
+				弾速 & 15 \\ \hline
+				攻撃力 & 5 \\ \hline
+				発射頻度 & 10 \\ \hline
+				進行方向 & プレイヤーの方向  \\ \hline 
+      \end{tabular}
+    \end{center}
+    \caption{歯車の弾のパラメータ}
+    \label{}
+  \end{minipage}
+\end{table}
+
+\paragraph{ソースコード}
 フェーズ4の動作定義に使用したソースコードを以下に示す。
 \begin{lstlisting}
-void setup(){}
-void draw(){}
-class Weapon{}
+void setup(){
+	gear = new ArrayList<Enemy>(); //歯車型の敵を定義
+	gear_bullet = new ArrayList<Weapon>(); //ギアの発射弾を定義。
+}
+void draw(){
+	if(game_play && phase > 0){
+		//第四フェーズの要素を生成。
+		if (phase == 4) {
+				if (gear_push) {
+						NumOfgear = 8;
+						for (int i = 0; i < NumOfgear; i++) {
+								//歯車を生成。
+								gear.add(new Enemy(enemy.x,enemy.y,50,50,5000,5000,false));
+						}
+						gear_push = false;
+				}
+				if (frameCount % 10 == 0) {
+						float dx,dy;
+						for (int i = 0; i < NumOfgear - 1; i++) {
+								//プレイヤーと歯車の間の距離を算出
+								dx = player.x - gear.get(i).x;
+								dy = player.y - gear.get(i).y;
+								//歯車の中心からプレイヤーの方向に進む弾を生成。
+								gear_bullet.add(new Weapon(gear.get(i).x,gear.get(i).y,10,5,0,degrees(atan2(dy,dx)),degrees(atan2(dy,dx))));
+								//歯車の弾をカウント。
+								NumOfgearb++;
+						}
+						//プレイヤーと敵の間の距離を算出。
+						dx = player.x - enemy.x;
+						dy = player.y - enemy.y;
+						//敵が発射する玉を歯車の弾の一部として扱う。歯車の弾よりも早い速度で発射する。
+						gear_bullet.add(new Weapon(enemy.x,enemy.y,15,5,0,degrees(atan2(dy,dx)),degrees(atan2(dy,dx))));
+						//ギアの弾の数を増やす。
+						NumOfgearb++;
+				}
+		}
+	}
+}
+class Enemy{
+	//歯車を描画。
+    void gear() {
+        noStroke();
+        fill(400,400,400);
+        ellipse(x,y,50,50);
+        for (int i = 0; i < NumOfgear; i++) {
+            pushMatrix();
+            fill(0);
+            translate(x,y);
+            rotate(radians(5 * frameCount));
+            rect(0,0,10,10);
+            translate(30 * cos(radians((360 * i / 8))),30 * sin(radians(360 * i / 8)));
+            rotate(radians(360 * i / 8));
+            noStroke();
+            fill(400,400,400);
+            rect( -1, -1,10,10);
+            popMatrix();
+        }
+    }
+}
+//ギア（歯車）の制御。
+void control_gear() {
+    for (int i = 0; i < NumOfgear - 1; i++) {
+        gear.get(i).gear(); //歯車を描画。
+        gear.get(i).enemy_move(); //歯車を動かす。
+        for (int j = 0; j < NumOfBullet - 1; j++) {
+            if (dist(bullets.get(j).x,bullets.get(j).y,gear.get(i).x,gear.get(i).y) < 30) {
+                //歯車の当たり判定に自機弾が当たった時
+                gear.get(i).HP -= bullets.get(j).atk; //歯車が自機弾の攻撃力分だけダメージを受ける
+                bullets.remove(j); //自機弾を消去
+                NumOfBullet--; //弾の数のカウントを減らす。
+            }
+        }
+        for (int j = 0; j < NumOfBullet2 - 1; j++) {
+            if (dist(bullet2.get(j).x,bullet2.get(j).y,gear.get(i).x,gear.get(i).y) < 30) {
+                //自機弾（二個目）が歯車に当たった時
+                gear.get(i).HP -= bullet2.get(j).atk; //歯車のHP
+                bullet2.remove(j); //自機弾（二個目）を削除する。
+                NumOfBullet2--; //自機弾（二個目）のカウントを減らす。
+            }
+        }
+        if (gear.get(i).HP < 0) {
+            //ギアのHPが0を下回ったとき
+            gear.remove(i); //ギアを消す。
+            NumOfgear--; //ギアの数を減らす。
+        }
+    }
+    for (int i = 0; i < NumOfgearb - 1; i++) {
+        gear_bullet.get(i).cbullet(); //ギアの発射弾を動かす。
+        if ((gear_bullet.get(i).x < player.x + 25 && gear_bullet.get(i).x > player.x - 25) && (gear_bullet.get(i).y <player.y + 25 && gear_bullet.get(i).y > player.y - 25)) {
+            //ギアの発射弾がプレイヤーに当たった時。
+            player.HP -= gear_bullet.get(i).atk; //プレイヤーがダメージを受ける。
+            gear_bullet.remove(i); //ギアの発射弾を削除する。
+            NumOfgearb--; //ギアの発射弾のカウントを減らす。
+        }
+        if (gear_bullet.get(i).y > height || gear_bullet.get(i).y < 0 || gear_bullet.get(i).x > Game_width) {
+            //ギア弾が画面外に出たとき
+            gear_bullet.remove(i); //ギア弾の削除
+            NumOfgearb--; //ギア弾のカウントを減らす。
+        }
+    }
+}
 \end{lstlisting}
+\paragraph{処理の説明}
+歯車の描画から先に説明する。
+歯車は二重円を描画しそこに四角形を付け加えることで実現している。
+また付け加えた四角形を回転させながら二重円の周りを回らせることで歯車が回転する演出を
+実現している。※図\ref{gear}
+
+基本的な歯車の挙動は敵機の挙動に準拠する。
+
+プレイヤーに向かって弾を発射する挙動についてはatan2関数でプレイヤーと歯車との間の
+角度を求めてそれを基に発射方向を定めるといった処理を行っている。※図\ref{atan2}
+
+%横に2枚の画像(jpg/png)表示
+\begin{figure}[H]
+\begin{center}
+\begin{tabular}{c}
+\begin{minipage}{0.5\hsize}
+\begin{center}
+\includegraphics[width=8cm]{gear.png}
+\end{center}
+\caption{歯車の描画}
+\label{gear}
+\end{minipage}
+\begin{minipage}{0.5\hsize}
+\begin{center}
+\includegraphics[width=8cm]{atan2.png}
+\end{center}
+\caption{歯車の弾の制御}
+\label{atan2}
+\end{minipage}
+\end{tabular}
+\end{center}
+\end{figure}
+
+
+
+歯車の弾の当たり判定はプレイヤーの四方25である。
+
+歯車本体の当たり判定は半径30以内である。
 \section{結果と考察}
+以上のアプリを制作した結果、学科内ランキング9位という結果であった。
 \subsection{他者からの評価とそれに対する考察}
+以下のような他者からの評価が見られた。
+\begin{itemize}
+	\item きちんと東方になっていた
+	\item ゲームバランスが良かった
+	\item 弾幕が手が込んでいてよかった。
+	\item 複数の攻撃手段があり面白かった
+	\item 弾幕に画面酔いしてしまった
+\end{itemize}
 \subsection{問題点とその解決法}
-\subsection{反省}
+弾幕に画面酔いする問題については改善しなければならない。
+フェーズ2,3,4共に弾幕を白い四角形にしたため視認性が悪く画面酔いをしてしまったと思われる。
+この点については視認性の良いグラフィックを制作することで改善できる。
+
+そしてその次はコードの視認性の悪さである。現在操作しているオブジェクトを
+指し示す「this」や、引数を活用すればもっと短く整理されたコードで記述できたのではないかと考えている。
 \section{まとめ}
+当初の目的であった知っているシューティングゲームの挙動を一通り実装できるようになるという目的に
+ついては、基本的なものでさえ参考にした東方の挙動を実現するのは難しかったためこれは実現できなかった
+ということになる。
+
+ゲーム制作の基礎を体感しゲームプログラミングの基礎を理解することについては達成できた。
+ゲームの作り始め方すら知らなかった段階からこのゲームが作れたことは誇るべきことだろう。
+
+ゲームクリエイターの独創性を理解することについては少し達成出来た。東方原作者のZUN氏の
+凄みを微量ながら知った。
+
+本実験の目的である新しい開発プラットフォームを使いこなせるようにする学習能力を身に着けること
+についてはいい経験になった。現にいまJavascriptのプラグインThree.jsやOPEN GL等のツールに
+抵抗なく触れることができている。
 \subsection{感想}
+今回のゲーム制作及びレポート執筆を終えてわかったことは、一連のプログラムを
+作って極力わかりやすいように報告書を作ることはかなりの労力を要する
+難しい作業なのだということである。表や画像を極力用いたがそれでも自分の意図が
+伝わってくれという気持ちである。加えて説明に36ページも要した。もっと簡潔に短く
+書くべきだったと後悔している。しかし今回の講義は自分を一番成長させる有意義な
+講義であった。
 \end{document}
+\begin{itemize}

@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.17.0 (TeX Live 2023)  (format=lualatex 2023.6.14)  12 FEB 2024 14:19
+This is LuaHBTeX, Version 1.17.0 (TeX Live 2023)  (format=lualatex 2023.6.14)  12 FEB 2024 22:12
  restricted system commands enabled.
  file:line:error style messages enabled.
 **c:/Users/kento/document/codes/my_git/share/latex/invent2/invent2.tex
@@ -550,33 +550,43 @@ File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
 \lst@WF=\write3
 )) (c:/texlive/texmf-local/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2023/02/27 1.9 listings language file
-) (./out/invent2.aux)
+) (./out/invent2.aux
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+)
 \openout1 = invent2.aux
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 45.
-LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 45.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 47.
+LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 47.
  (c:/texlive/2023/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for JY3/mc/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for JT3/mc/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for JY3/mc/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for JT3/mc/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
  (c:/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count299
@@ -602,289 +612,365 @@ Package caption Info: End \AtBeginDocument code.
 \c@lstlisting=\count305
 (load cache: extra_lmroman17-regular.luc)
 LaTeX Font Info:    Font shape `JT3/mc/m/n' will be
-(Font)              scaled to size 15.97903pt on input line 50.
+(Font)              scaled to size 15.97903pt on input line 52.
 LaTeX Font Info:    Font shape `JY3/mc/m/n' will be
-(Font)              scaled to size 15.97903pt on input line 50.
+(Font)              scaled to size 15.97903pt on input line 52.
 (load cache: extra_lmroman12-regular.luc)
 LaTeX Font Info:    Font shape `JT3/mc/m/n' will be
-(Font)              scaled to size 11.09656pt on input line 50.
+(Font)              scaled to size 11.09656pt on input line 52.
 LaTeX Font Info:    Font shape `JY3/mc/m/n' will be
-(Font)              scaled to size 11.09656pt on input line 50.
-LaTeX Font Info:    Calculating math sizes for size <13.14001> on input line 50.
+(Font)              scaled to size 11.09656pt on input line 52.
+LaTeX Font Info:    Calculating math sizes for size <13.14001> on input line 52.
 LaTeX Font Info:    Font shape `JY3/mc/m/n' will be
-(Font)              scaled to size 7.76755pt on input line 50.
+(Font)              scaled to size 7.76755pt on input line 52.
 LaTeX Font Info:    Font shape `JY3/mc/m/n' will be
-(Font)              scaled to size 5.54828pt on input line 50.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 50.
+(Font)              scaled to size 5.54828pt on input line 52.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 52.
  (c:/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 50.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 52.
  (c:/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 Non-PDF special ignored!
 
 {c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+LaTeX Font Info:    Font shape `JT3/gt/m/n' will be
+(Font)              scaled to size 9.24713pt on input line 54.
+LaTeX Font Info:    Font shape `JY3/gt/m/n' will be
+(Font)              scaled to size 9.24713pt on input line 54.
+(load cache: extra_haranoajigothic-medium.luc)(load cache: extra_lmsans10-regular.luc)
 LaTeX Font Info:    Font shape `JT3/mc/m/n' will be
-(Font)              scaled to size 13.31584pt on input line 52.
+(Font)              scaled to size 13.31584pt on input line 54.
 LaTeX Font Info:    Font shape `JY3/mc/m/n' will be
-(Font)              scaled to size 13.31584pt on input line 52.
+(Font)              scaled to size 13.31584pt on input line 54.
 LaTeX Font Info:    Font shape `JT3/gt/m/n' will be
-(Font)              scaled to size 13.31584pt on input line 52.
+(Font)              scaled to size 13.31584pt on input line 54.
 LaTeX Font Info:    Font shape `JY3/gt/m/n' will be
-(Font)              scaled to size 13.31584pt on input line 52.
-(load cache: extra_haranoajigothic-medium.luc)(load cache: extra_lmsans12-regular.luc)
+(Font)              scaled to size 13.31584pt on input line 54.
+(load cache: extra_lmsans12-regular.luc) (./out/invent2.toc
+LaTeX Font Info:    Calculating math sizes for size <10.95001> on input line 2.
+LaTeX Font Info:    Font shape `JY3/mc/m/n' will be
+(Font)              scaled to size 6.47295pt on input line 2.
+LaTeX Font Info:    Font shape `JY3/mc/m/n' will be
+(Font)              scaled to size 4.62357pt on input line 2.
+)
+\tf@toc=\write4
+
+\openout4 = invent2.toc
+ [1]
 LaTeX Font Info:    Font shape `JT3/gt/m/n' will be
-(Font)              scaled to size 11.09656pt on input line 53.
+(Font)              scaled to size 11.09656pt on input line 57.
 LaTeX Font Info:    Font shape `JY3/gt/m/n' will be
-(Font)              scaled to size 11.09656pt on input line 53.
-<invent_view.png, id=8, 1445.4pt x 812.28468pt>
+(Font)              scaled to size 11.09656pt on input line 57.
+<invent_view.png, id=14, 1445.4pt x 812.28468pt>
 File: invent_view.png Graphic file (type png)
 <use invent_view.png>
-Package luatex.def Info: invent_view.png  used on input line 90.
+Package luatex.def Info: invent_view.png  used on input line 94.
 (luatex.def)             Requested size: 405.01802pt x 227.62204pt.
- [1]
-LaTeX Font Info:    Calculating math sizes for size <8.76001> on input line 100.
+ [2
+
+]
+LaTeX Font Info:    Calculating math sizes for size <8.76001> on input line 104.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <5.59996> not available
-(Font)              size <6> substituted on input line 100.
+(Font)              size <6> substituted on input line 104.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <4> not available
-(Font)              size <5> substituted on input line 100.
+(Font)              size <5> substituted on input line 104.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <5.59996> not available
-(Font)              size <6> substituted on input line 100.
+(Font)              size <6> substituted on input line 104.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <4> not available
-(Font)              size <5> substituted on input line 100.
+(Font)              size <5> substituted on input line 104.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <5.59996> not available
-(Font)              size <6> substituted on input line 100.
+(Font)              size <6> substituted on input line 104.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <4> not available
-(Font)              size <5> substituted on input line 100.
+(Font)              size <5> substituted on input line 104.
 
 LaTeX Font Info:    Font shape `JY3/mc/m/n' will be
-(Font)              scaled to size 5.17834pt on input line 100.
+(Font)              scaled to size 5.17834pt on input line 104.
 LaTeX Font Info:    Font shape `JY3/mc/m/n' will be
-(Font)              scaled to size 3.69885pt on input line 100.
-[2<./invent_view.png>]
-LaTeX Font Info:    Calculating math sizes for size <10.95001> on input line 153.
-LaTeX Font Info:    Font shape `JY3/mc/m/n' will be
-(Font)              scaled to size 6.47295pt on input line 153.
-LaTeX Font Info:    Font shape `JY3/mc/m/n' will be
-(Font)              scaled to size 4.62357pt on input line 153.
-<start.png, id=22, 327.624pt x 326.4195pt>
+(Font)              scaled to size 3.69885pt on input line 104.
+[3<./invent_view.png>]
+<start.png, id=26, 327.624pt x 326.4195pt>
 File: start.png Graphic file (type png)
 <use start.png>
-Package luatex.def Info: start.png  used on input line 182.
+Package luatex.def Info: start.png  used on input line 186.
 (luatex.def)             Requested size: 99.58464pt x 99.21661pt.
-<drawing_30.png, id=23, 578.16pt x 578.16pt>
+<drawing_30.png, id=27, 578.16pt x 578.16pt>
 File: drawing_30.png Graphic file (type png)
 <use drawing_30.png>
-Package luatex.def Info: drawing_30.png  used on input line 189.
+Package luatex.def Info: drawing_30.png  used on input line 193.
 (luatex.def)             Requested size: 99.58464pt x 99.58273pt.
+ [4<./start.png><./drawing_30.png>](load cache: extra_lmmono10-regular.luc)(load cache: extra_lmmono8-regular.luc)
 LaTeX Font Info:    Font shape `JT3/gt/m/n' will be
-(Font)              scaled to size 9.24713pt on input line 198.
+(Font)              scaled to size 6.47299pt on input line 225.
 LaTeX Font Info:    Font shape `JY3/gt/m/n' will be
-(Font)              scaled to size 9.24713pt on input line 198.
-(load cache: extra_lmsans10-regular.luc) [3<./start.png><./drawing_30.png>](load cache: extra_lmmono10-regular.luc)(load cache: extra_lmmono8-regular.luc)
-LaTeX Font Info:    Font shape `JT3/gt/m/n' will be
-(Font)              scaled to size 6.47299pt on input line 221.
-LaTeX Font Info:    Font shape `JY3/gt/m/n' will be
-(Font)              scaled to size 6.47299pt on input line 221.
+(Font)              scaled to size 6.47299pt on input line 225.
 Removing  `ltj.process_input_buffer' from `process_input_buffer'.
 Inserting `ltj.listings_unicode' in `process_input_buffer'.
 Inserting `ltj.process_input_buffer' in `process_input_buffer'.(load cache: extra_lmroman7-regular.luc)
 LaTeX Font Info:    Font shape `JT3/mc/m/n' will be
-(Font)              scaled to size 6.47299pt on input line 222.
+(Font)              scaled to size 6.47299pt on input line 226.
 LaTeX Font Info:    Font shape `JY3/mc/m/n' will be
-(Font)              scaled to size 6.47299pt on input line 222.
+(Font)              scaled to size 6.47299pt on input line 226.
 (load cache: extra_lmroman5-regular.luc)
 LaTeX Font Info:    Font shape `JT3/mc/m/n' will be
-(Font)              scaled to size 4.62357pt on input line 222.
+(Font)              scaled to size 4.62357pt on input line 226.
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <7> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 222.
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 226.
 (load cache: extra_lmmonolt10-bold.luc)
 LaTeX Font Info:    Font shape `JT3/gt/b/n' in size <7> not available
-(Font)              Font shape `JT3/gt/m/n' tried instead on input line 222.
+(Font)              Font shape `JT3/gt/m/n' tried instead on input line 226.
 LaTeX Font Info:    Font shape `JT3/gt/m/n' will be
-(Font)              scaled to size 5.91139pt on input line 222.
+(Font)              scaled to size 5.91139pt on input line 226.
 LaTeX Font Info:    Font shape `JY3/gt/b/n' in size <7> not available
-(Font)              Font shape `JY3/gt/m/n' tried instead on input line 222.
+(Font)              Font shape `JY3/gt/m/n' tried instead on input line 226.
 LaTeX Font Info:    Font shape `JY3/gt/m/n' will be
-(Font)              scaled to size 5.91139pt on input line 222.
+(Font)              scaled to size 5.91139pt on input line 226.
 (load cache: extra_lmmono10-italic.luc)
 LaTeX Font Info:    Font shape `JT3/gt/m/it' in size <7> not available
-(Font)              Font shape `JT3/gt/m/n' tried instead on input line 223.
+(Font)              Font shape `JT3/gt/m/n' tried instead on input line 227.
 LaTeX Font Info:    Font shape `JT3/gt/m/n' will be
-(Font)              scaled to size 5.91139pt on input line 223.
+(Font)              scaled to size 5.91139pt on input line 227.
 LaTeX Font Info:    Font shape `JY3/gt/m/it' in size <7> not available
-(Font)              Font shape `JY3/gt/m/n' tried instead on input line 223.
+(Font)              Font shape `JY3/gt/m/n' tried instead on input line 227.
 LaTeX Font Info:    Font shape `JY3/gt/m/n' will be
-(Font)              scaled to size 5.91139pt on input line 223.
- [4] [5]
+(Font)              scaled to size 5.91139pt on input line 227.
+ [5] [6]
 Removing  `ltj.listings_unicode' from `process_input_buffer'.
-<playing_phase1.png, id=40, 711.8595pt x 443.85825pt>
+<playing_phase1.png, id=43, 711.8595pt x 443.85825pt>
 File: playing_phase1.png Graphic file (type png)
 <use playing_phase1.png>
-Package luatex.def Info: playing_phase1.png  used on input line 391.
+Package luatex.def Info: playing_phase1.png  used on input line 395.
 (luatex.def)             Requested size: 365.06389pt x 227.62204pt.
- [6] [7<./playing_phase1.png>]
+ [7] [8<./playing_phase1.png>]
 Removing  `ltj.process_input_buffer' from `process_input_buffer'.
 Inserting `ltj.listings_unicode' in `process_input_buffer'.
 Inserting `ltj.process_input_buffer' in `process_input_buffer'.
-Removing  `ltj.listings_unicode' from `process_input_buffer'. [8] [9]
+Removing  `ltj.listings_unicode' from `process_input_buffer'. [9] [10]
 Removing  `ltj.process_input_buffer' from `process_input_buffer'.
 Inserting `ltj.listings_unicode' in `process_input_buffer'.
-Inserting `ltj.process_input_buffer' in `process_input_buffer'. [10]
-Removing  `ltj.listings_unicode' from `process_input_buffer'. [11]
-<enemy_reject.png, id=63, 467.94826pt x 232.4685pt>
+Inserting `ltj.process_input_buffer' in `process_input_buffer'. [11]
+Removing  `ltj.listings_unicode' from `process_input_buffer'. [12]
+<enemy_reject.png, id=66, 467.94826pt x 232.4685pt>
 File: enemy_reject.png Graphic file (type png)
 <use enemy_reject.png>
-Package luatex.def Info: enemy_reject.png  used on input line 667.
+Package luatex.def Info: enemy_reject.png  used on input line 671.
 (luatex.def)             Requested size: 286.38339pt x 142.26378pt.
-<basic_avility.png, id=65, 401.0985pt x 216.81pt>
+<basic_avility.png, id=68, 401.0985pt x 216.81pt>
 File: basic_avility.png Graphic file (type png)
 <use basic_avility.png>
-Package luatex.def Info: basic_avility.png  used on input line 678.
-(luatex.def)             Requested size: 421.123pt x 227.62204pt.
- [12<./enemy_reject.png>] [13<./basic_avility.png>]
+Package luatex.def Info: basic_avility.png  used on input line 682.
+(luatex.def)             Requested size: 315.84224pt x 170.71652pt.
+ [13<./enemy_reject.png><./basic_avility.png>]
 Removing  `ltj.process_input_buffer' from `process_input_buffer'.
 Inserting `ltj.listings_unicode' in `process_input_buffer'.
 Inserting `ltj.process_input_buffer' in `process_input_buffer'. [14]
-Removing  `ltj.listings_unicode' from `process_input_buffer'.
-<move_bullet.png, id=80, 238.491pt x 251.13824pt>
+Removing  `ltj.listings_unicode' from `process_input_buffer'. [15]
+<move_bullet.png, id=83, 238.491pt x 251.13824pt>
 File: move_bullet.png Graphic file (type png)
 <use move_bullet.png>
-Package luatex.def Info: move_bullet.png  used on input line 820.
+Package luatex.def Info: move_bullet.png  used on input line 825.
 (luatex.def)             Requested size: 227.62204pt x 239.69894pt.
 
-Overfull \hbox (4.85828pt too wide) in paragraph at lines 820--821
+Overfull \hbox (4.85828pt too wide) in paragraph at lines 825--826
  [] 
  []
 
-<control_bullet.png, id=81, 408.3255pt x 274.626pt>
+<control_bullet.png, id=84, 408.3255pt x 274.626pt>
 File: control_bullet.png Graphic file (type png)
 <use control_bullet.png>
-Package luatex.def Info: control_bullet.png  used on input line 827.
+Package luatex.def Info: control_bullet.png  used on input line 832.
 (luatex.def)             Requested size: 227.62204pt x 153.09389pt.
 
-Overfull \hbox (4.85828pt too wide) in paragraph at lines 827--828
+Overfull \hbox (4.85828pt too wide) in paragraph at lines 832--833
  [] 
  []
 
 
-Overfull \hbox (16.78638pt too wide) in paragraph at lines 817--833
+Overfull \hbox (16.78638pt too wide) in paragraph at lines 822--838
  [][][] 
  []
 
-[15<./move_bullet.png><./control_bullet.png>]
-<bomb_game.png, id=87, 339.06676pt x 328.8285pt>
+<bomb_game.png, id=85, 339.06676pt x 328.8285pt>
 File: bomb_game.png Graphic file (type png)
 <use bomb_game.png>
-Package luatex.def Info: bomb_game.png  used on input line 849.
+Package luatex.def Info: bomb_game.png  used on input line 854.
 (luatex.def)             Requested size: 234.71684pt x 227.62204pt.
- [16<./bomb_game.png>]
+[16<./move_bullet.png><./control_bullet.png>] [17<./bomb_game.png>]
 Removing  `ltj.process_input_buffer' from `process_input_buffer'.
 Inserting `ltj.listings_unicode' in `process_input_buffer'.
-Inserting `ltj.process_input_buffer' in `process_input_buffer'. [17] [18]
+Inserting `ltj.process_input_buffer' in `process_input_buffer'. [18] [19]
 Removing  `ltj.listings_unicode' from `process_input_buffer'.
-<bomb_larger.png, id=100, 205.36725pt x 169.8345pt>
+<bomb_larger.png, id=103, 205.36725pt x 169.8345pt>
 File: bomb_larger.png Graphic file (type png)
 <use bomb_larger.png>
-Package luatex.def Info: bomb_larger.png  used on input line 1036.
+Package luatex.def Info: bomb_larger.png  used on input line 1043.
 (luatex.def)             Requested size: 170.71652pt x 141.18286pt.
-<bomb_enemy.png, id=101, 401.70074pt x 295.1025pt>
+<bomb_enemy.png, id=104, 401.70074pt x 295.1025pt>
 File: bomb_enemy.png Graphic file (type png)
 <use bomb_enemy.png>
-Package luatex.def Info: bomb_enemy.png  used on input line 1043.
+Package luatex.def Info: bomb_enemy.png  used on input line 1050.
 (luatex.def)             Requested size: 170.71652pt x 125.41464pt.
 
-Overfull \hbox (16.78638pt too wide) in paragraph at lines 1033--1049
+Overfull \hbox (16.78638pt too wide) in paragraph at lines 1040--1056
  [][][] 
  []
 
-[19<./bomb_larger.png><./bomb_enemy.png>]
+[20<./bomb_larger.png><./bomb_enemy.png>]
 Removing  `ltj.process_input_buffer' from `process_input_buffer'.
 Inserting `ltj.listings_unicode' in `process_input_buffer'.
-Inserting `ltj.process_input_buffer' in `process_input_buffer'. [20]
-Removing  `ltj.listings_unicode' from `process_input_buffer'. [21]
-
-Package caption Warning: \label without proper reference on input line 1208.
-See the caption package documentation for explanation.
-
-(load cache: extra_lmroman10-bold.luc)
-LaTeX Font Info:    Font shape `JT3/mc/b/n' in size <10> not available
-(Font)              Font shape `JT3/gt/m/n' tried instead on input line 1181.
-LaTeX Font Info:    Font shape `JT3/gt/m/n' will be
-(Font)              scaled to size 8.44485pt on input line 1181.
-LaTeX Font Info:    Font shape `JY3/mc/b/n' in size <10> not available
-(Font)              Font shape `JY3/gt/m/n' tried instead on input line 1181.
-LaTeX Font Info:    Font shape `JY3/gt/m/n' will be
-(Font)              scaled to size 8.44485pt on input line 1181.
-
-LaTeX Warning: Reference `random_move' on page 22 undefined on input line 1181.
-
-<random_move.png, id=115, 412.03937pt x 177.66376pt>
+Inserting `ltj.process_input_buffer' in `process_input_buffer'. [21]
+Removing  `ltj.listings_unicode' from `process_input_buffer'. [22]
+<random_move.png, id=118, 412.03937pt x 177.66376pt>
 File: random_move.png Graphic file (type png)
 <use random_move.png>
-Package luatex.def Info: random_move.png  used on input line 1207.
+Package luatex.def Info: random_move.png  used on input line 1214.
 (luatex.def)             Requested size: 395.93681pt x 170.71652pt.
-<phase1.png, id=117, 375.0813pt x 578.16pt>
+<phase1.png, id=120, 375.0813pt x 578.16pt>
 File: phase1.png Graphic file (type png)
 <use phase1.png>
-Package luatex.def Info: phase1.png  used on input line 1234.
+Package luatex.def Info: phase1.png  used on input line 1241.
 (luatex.def)             Requested size: 92.29349pt x 142.26378pt.
-[22<./random_move.png>]
+ [23<./random_move.png>]
 Removing  `ltj.process_input_buffer' from `process_input_buffer'.
 Inserting `ltj.listings_unicode' in `process_input_buffer'.
-Inserting `ltj.process_input_buffer' in `process_input_buffer'. [23<./phase1.png>]
+Inserting `ltj.process_input_buffer' in `process_input_buffer'. [24<./phase1.png>]
 Removing  `ltj.listings_unicode' from `process_input_buffer'.
-<rect_fall.png, id=135, 151.767pt x 148.1535pt>
+<rect_fall.png, id=137, 151.767pt x 148.1535pt>
 File: rect_fall.png Graphic file (type png)
 <use rect_fall.png>
-Package luatex.def Info: rect_fall.png  used on input line 1325.
+Package luatex.def Info: rect_fall.png  used on input line 1335.
 (luatex.def)             Requested size: 170.71652pt x 166.65193pt.
-<control_rect.png, id=136, 467.94826pt x 271.61475pt>
+<control_rect.png, id=138, 467.94826pt x 271.61475pt>
 File: control_rect.png Graphic file (type png)
 <use control_rect.png>
-Package luatex.def Info: control_rect.png  used on input line 1332.
+Package luatex.def Info: control_rect.png  used on input line 1342.
 (luatex.def)             Requested size: 284.52756pt x 165.1501pt.
 
-Overfull \hbox (61.7638pt too wide) in paragraph at lines 1332--1333
+Overfull \hbox (61.7638pt too wide) in paragraph at lines 1342--1343
  [] 
  []
 
 
-Overfull \hbox (16.78638pt too wide) in paragraph at lines 1322--1338
+Overfull \hbox (16.78638pt too wide) in paragraph at lines 1332--1348
  [][][] 
  []
 
-[24]
-<phase2_1.png, id=140, 367.8543pt x 578.16pt>
+[25]
+<phase2_1.png, id=142, 367.8543pt x 578.16pt>
 File: phase2_1.png Graphic file (type png)
 <use phase2_1.png>
-Package luatex.def Info: phase2_1.png  used on input line 1350.
+Package luatex.def Info: phase2_1.png  used on input line 1360.
 (luatex.def)             Requested size: 142.26378pt x 223.6024pt.
-<phase2_2.png, id=141, 367.8543pt x 578.16pt>
+<phase2_2.png, id=143, 367.8543pt x 578.16pt>
 File: phase2_2.png Graphic file (type png)
 <use phase2_2.png>
-Package luatex.def Info: phase2_2.png  used on input line 1357.
+Package luatex.def Info: phase2_2.png  used on input line 1367.
 (luatex.def)             Requested size: 142.26378pt x 223.6024pt.
 
-Overfull \hbox (16.78638pt too wide) in paragraph at lines 1347--1363
+Overfull \hbox (16.78638pt too wide) in paragraph at lines 1357--1373
  [][][] 
  []
 
-[25<./rect_fall.png><./control_rect.png><./phase2_1.png><./phase2_2.png>] [26] (./out/invent2.aux)
+[26<./rect_fall.png><./control_rect.png><./phase2_1.png><./phase2_2.png>]
+Removing  `ltj.process_input_buffer' from `process_input_buffer'.
+Inserting `ltj.listings_unicode' in `process_input_buffer'.
+Inserting `ltj.process_input_buffer' in `process_input_buffer'. [27]
+Removing  `ltj.listings_unicode' from `process_input_buffer'.
+<Cparts.png, id=154, 257.16075pt x 174.6525pt>
+File: Cparts.png Graphic file (type png)
+<use Cparts.png>
+Package luatex.def Info: Cparts.png  used on input line 1480.
+(luatex.def)             Requested size: 170.71652pt x 115.94257pt.
+<cb_attack.png, id=155, 172.84575pt x 155.3805pt>
+File: cb_attack.png Graphic file (type png)
+<use cb_attack.png>
+Package luatex.def Info: cb_attack.png  used on input line 1487.
+(luatex.def)             Requested size: 113.81102pt x 102.30959pt.
+
+Overfull \hbox (16.78638pt too wide) in paragraph at lines 1477--1493
+ [][][] 
+ []
+
+<phase3_1.png, id=156, 375.0813pt x 578.16pt>
+File: phase3_1.png Graphic file (type png)
+<use phase3_1.png>
+Package luatex.def Info: phase3_1.png  used on input line 1502.
+(luatex.def)             Requested size: 147.66614pt x 227.62204pt.
+[28<./Cparts.png><./cb_attack.png>] [29<./phase3_1.png>]
+Removing  `ltj.process_input_buffer' from `process_input_buffer'.
+Inserting `ltj.listings_unicode' in `process_input_buffer'.
+Inserting `ltj.process_input_buffer' in `process_input_buffer'. [30]
+Removing  `ltj.listings_unicode' from `process_input_buffer'.
+<sinb.png, id=172, 277.035pt x 395.076pt>
+File: sinb.png Graphic file (type png)
+<use sinb.png>
+Package luatex.def Info: sinb.png  used on input line 1633.
+(luatex.def)             Requested size: 85.35826pt x 121.72476pt.
+<cosb.png, id=173, 277.035pt x 383.63326pt>
+File: cosb.png Graphic file (type png)
+<use cosb.png>
+Package luatex.def Info: cosb.png  used on input line 1640.
+(luatex.def)             Requested size: 85.35826pt x 118.1992pt.
+
+Overfull \hbox (16.78638pt too wide) in paragraph at lines 1630--1646
+ [][][] 
+ []
+
+<drawing_21.png, id=174, 372.9132pt x 578.16pt>
+File: drawing_21.png Graphic file (type png)
+<use drawing_21.png>
+Package luatex.def Info: drawing_21.png  used on input line 1654.
+(luatex.def)             Requested size: 146.81258pt x 227.62204pt.
+[31<./sinb.png><./cosb.png>]
+Overfull \hbox (29.82863pt too wide) in paragraph at lines 1680--1690
+ [][][] 
+ []
+
+[32<./drawing_21.png>]
+Removing  `ltj.process_input_buffer' from `process_input_buffer'.
+Inserting `ltj.listings_unicode' in `process_input_buffer'.
+Inserting `ltj.process_input_buffer' in `process_input_buffer'. [33]
+Removing  `ltj.listings_unicode' from `process_input_buffer'.
+<gear.png, id=189, 336.0555pt x 192.72pt>
+File: gear.png Graphic file (type png)
+<use gear.png>
+Package luatex.def Info: gear.png  used on input line 1835.
+(luatex.def)             Requested size: 227.62204pt x 130.53618pt.
+
+Overfull \hbox (4.85828pt too wide) in paragraph at lines 1835--1836
+ [] 
+ []
+
+<atan2.png, id=190, 263.18324pt x 198.7425pt>
+File: atan2.png Graphic file (type png)
+<use atan2.png>
+Package luatex.def Info: atan2.png  used on input line 1842.
+(luatex.def)             Requested size: 227.62204pt x 171.89473pt.
+
+Overfull \hbox (4.85828pt too wide) in paragraph at lines 1842--1843
+ [] 
+ []
+
+
+Overfull \hbox (16.78638pt too wide) in paragraph at lines 1832--1848
+ [][][] 
+ []
+
+[34] [35<./gear.png><./atan2.png>] [36] (./out/invent2.aux)
  ***********
 LaTeX2e <2023-06-01>
 L3 programming layer <2023-06-05>
@@ -895,24 +981,24 @@ LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.0pt have occurred.
 
 
-LaTeX Warning: There were undefined references.
+LaTeX Warning: There were multiply-defined labels.
 
 )
 
 Here is how much of LuaTeX's memory you used:
- 9066 strings out of 478043
- 1822820,1977958 words of node,token memory allocated
- 1291 words of node memory still in use:
-   10 hlist, 2 vlist, 5 rule, 2 glue, 4 kern, 1 glyph, 313 attribute, 54 glue_spec, 40 attribute_list, 1 write, 13 user_defined nodes
-   avail lists: 1:35,2:238552,3:1261,4:61312,5:20458,6:148,7:25839,8:31,9:58516,10:51,11:1893
- 29309 multiletter control sequences out of 65536+600000
- 96 fonts using 73891127 bytes
+ 9169 strings out of 478043
+ 1822813,1977958 words of node,token memory allocated
+ 1267 words of node memory still in use:
+   10 hlist, 2 vlist, 5 rule, 2 glue, 4 kern, 1 glyph, 302 attribute, 54 glue_spec, 39 attribute_list, 1 write, 13 user_defined nodes
+   avail lists: 1:36,2:262613,3:1430,4:67642,5:22587,6:148,7:28896,8:31,9:64571,10:51,11:2109
+ 29389 multiletter control sequences out of 65536+600000
+ 95 fonts using 73759119 bytes
  125i,20n,128p,1833b,855s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmroman10-bold.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmmono10-italic.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmmono8-regular.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmmonolt10-bold.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmroman5-regular.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmsans10-regular.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmroman8-regular.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmroman10-regular.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/haranoaji/HaranoAjiGothic-Medium.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmsans12-regular.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmroman12-regular.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/haranoaji/HaranoAjiMincho-Regular.otf><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on invent2.pdf (27 pages, 881434 bytes).
+<c:/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmmono10-italic.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmmono8-regular.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmmonolt10-bold.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmroman5-regular.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmroman8-regular.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmsans12-regular.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmroman10-regular.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmsans10-regular.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/haranoaji/HaranoAjiGothic-Medium.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmroman12-regular.otf><c:/texlive/2023/texmf-dist/fonts/opentype/public/haranoaji/HaranoAjiMincho-Regular.otf><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on invent2.pdf (37 pages, 1062576 bytes).
 
-PDF statistics: 249 PDF objects out of 1000 (max. 8388607)
- 135 compressed objects within 2 object streams
+PDF statistics: 293 PDF objects out of 1000 (max. 8388607)
+ 154 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 131072)
- 71 words of extra memory for PDF output out of 10000 (max. 100000000)
+ 91 words of extra memory for PDF output out of 10000 (max. 100000000)
 
